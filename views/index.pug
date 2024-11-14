@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1= title
+  h2= motive
+  .balance 
+    p= walletBalance
+  .claim 
+    p= claim
+  .wallet 
+    p Wallet Email 
+    div 
+      input(type="email", name="email", placeholder="Faucetpay Email")
+    button.btn.btn-primary Get Reward
+  .payment 
+    h3 Recent payouts 
+    table 
+      tr 
+        td Date 
+        td Address 
+        td Reward
+      each pay in payouts
+        tr 
+          td= pay.time
+          td= pay.address
+          td= pay.amount
+
+
+  p.label Welcome to #{title}

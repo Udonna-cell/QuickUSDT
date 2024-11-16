@@ -4,28 +4,36 @@ const sass = require("sass");
 const fs = require("fs");
 const path = require("path");
 const router = express.Router();
-const { API } = require("FaucetPayJS");
+const { API } = require("faucetpayjs");
 const myAPI = new API(process.env.API_KEY);
+// const query = require("../utility/database/index.js")
 const mysql = require("mysql");
 
-const connection = mysql.createConnection({
-  host: "db4free.net",
-  user: "stabug",
-  password: "456ma$SO",
-  database: "greydb",
-});
+
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
+router.get("/", async function (req, res, next) {
+  let style = sass.compile(path.resolve(__dirname, "../sass/style.scss"));
+
+  fs.writeFileSync(
+    path.resolve(__dirname, "../public/stylesheets/style.css"),
+    style.css
+  );
+  
+  const connection = mysql.createConnection({
+    host: "localhost",
+    user: "admin",
+    password: "",
+    database: "test",
+  });
   connection.connect();
 
   connection.query(
-    "SELECT * FROM quickUSDT",
+    'SELECT * FROM `transactions` ORDER BY time DESC;',
     async function (error, results, fields) {
       if (error) {
         console.log("An error occur :(");
       } else {
-
         let payouts = JSON.stringify(results);
         payouts = JSON.parse(payouts);
         payouts.forEach((pay) => {
@@ -34,15 +42,14 @@ router.get("/", function (req, res, next) {
           // pay.time = pay.time.replaceAll(":", "/");
         });
 
-        let style = sass.compile(path.resolve(__dirname, "../sass/style.scss"));
+        let Balance
+        try {
+          Balance = await myAPI.getBalance("USDT");
+          Balance = Balance.balance * Math.pow(10, -8);
+        } catch (e) {
+          Balance = NaN
+        }
 
-        fs.writeFileSync(
-          path.resolve(__dirname, "../public/stylesheets/style.css"),
-          style.css
-        );
-
-        let Balance = await myAPI.getBalance("USDT");
-        Balance = Balance.balance * Math.pow(10, -8);
 
         let data = {
           title: "QuickUSDT",
@@ -56,9 +63,10 @@ router.get("/", function (req, res, next) {
         res.render("index", data);
       }
     }
-  );
+  )
 
   connection.end();
+
 });
 
 module.exports = router;

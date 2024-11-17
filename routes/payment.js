@@ -13,10 +13,10 @@ router.post('/', function (req, res, next) {
 
   // Create a connection to the MySQL database
   const connection = mysql.createConnection({
-    host: "localhost",
-    user: "admin",
-    password: "", // Consider using environment variables for sensitive data like password
-    database: "test",
+    host: process.env.HOST || "localhost",
+    user: process.env.USER || "admin",
+    password: process.env.PASSWORD || "",
+    database: process.env.DATABASE || "test",
   });
 
   // Connect to the database
@@ -45,8 +45,9 @@ router.post('/', function (req, res, next) {
             let timeDifference = now - claimed; // Difference in milliseconds
 
             // Convert the difference into minutes
-            let minutesWaited = timeDifference / (1000 * 60); // milliseconds to minutes
+            let minutesWaited = timeDifference / (1000 * 60 * 60); // milliseconds to minutes
 
+            console.log(minutesWaited);
             // Check if the user has waited more than 30 minutes
             if (minutesWaited > 30) {
               console.log("User has waited more than 30 minutes.");
@@ -54,7 +55,7 @@ router.post('/', function (req, res, next) {
               // If so, insert a new record into the database (claim)
               connection.query(
                 "INSERT INTO `transactions` ( `address`, `amount`) VALUES (?, ?)",
-                [ address, 0.001], // Here, the placeholder '?' will be replaced by actual values
+                [ address, (process.env.AMOUNT * Math.pow(10, -8))], // Here, the placeholder '?' will be replaced by actual values
                 (insertError) => {
                   if (insertError) {
                     console.log("Failed to insert data: " + insertError);
@@ -65,7 +66,7 @@ router.post('/', function (req, res, next) {
                     return res.status(500).json({ error: "Failed to insert new claim" });
                   } else {
                     console.log("Successfully added new claim info.");
-                    myAPI.send(100000,address,"USDT",false).then(d=>{
+                    myAPI.send(process.env.AMOUNT,address,"USDT",false).then(d=>{
                       console.dir(d);
                       
                     })
@@ -80,17 +81,18 @@ router.post('/', function (req, res, next) {
               console.log("User has not yet waited 30 minutes.");
             }
           } else {
+            console.log("address not found");
             // If the user doesn't exist in the database, create a new record
             connection.query(
               "INSERT INTO `transactions` (`address`, `amount`) VALUES (?, ?)",
-              [address, 0.001], // Insert a new claim record for the user
+              [address, (process.env.AMOUNT * Math.pow(10, -8))], // Insert a new claim record for the user
               (insertError) => {
                 if (insertError) {
                   console.log("Failed to insert data: " + insertError);
                   return res.status(500).json({ error: "Failed to insert new user claim" });
                 } else {
                   console.log("Successfully added new user claim.");
-                  myAPI.send(100000,address,"USDT",false).then(d=>{
+                  myAPI.send(process.env.AMOUNT,address,"USDT",false).then(d=>{
                       console.dir(d);
                       
                     })

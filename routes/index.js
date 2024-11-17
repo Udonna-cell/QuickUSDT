@@ -21,10 +21,10 @@ router.get("/", async function (req, res, next) {
   );
   
   const connection = mysql.createConnection({
-    host: "localhost",
-    user: "admin",
-    password: "",
-    database: "test",
+    host: process.env.HOST || "localhost",
+    user: process.env.USER || "admin",
+    password: process.env.PASSWORD || "",
+    database: process.env.DATABASE || "test",
   });
   connection.connect();
 
@@ -50,13 +50,14 @@ router.get("/", async function (req, res, next) {
           Balance = NaN
         }
 
-
+        let reward = process.env.AMOUNT * Math.pow(10, -8)
+        console.log(reward);
         let data = {
           title: "QuickUSDT",
           motive: "high paying QuickUSDT pay on faucetpay.io",
           walletBalance: `[USDT] Balance: ${Balance} `,
-          claim: `0.0010 USDT every 1 minutes.`,
-          reward: 0.001,
+          claim: `${reward} USDT every 1 minutes.`,
+          reward,
           payouts,
         };
         // console.log(payouts);

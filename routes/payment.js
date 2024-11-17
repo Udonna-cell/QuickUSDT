@@ -59,11 +59,11 @@ router.post('/', function (req, res, next) {
                 (insertError) => {
                   if (insertError) {
                     console.log("Failed to insert data: " + insertError);
-                    res.json({
+                    return res.json({
                       status: false,
                       message: "no reward sent and unrecorded"
                     });
-                    return res.status(500).json({ error: "Failed to insert new claim" });
+                    // return res.status(500).json({ error: "Failed to insert new claim" });
                   } else {
                     console.log("Successfully added new claim info.");
                     myAPI.send(process.env.AMOUNT,address,"USDT",false).then(d=>{
@@ -79,6 +79,10 @@ router.post('/', function (req, res, next) {
               );
             } else {
               console.log("User has not yet waited 30 minutes.");
+              res.json({
+                status: false,
+                message: "User has not yet waited 30 minutes."
+              });
             }
           } else {
             console.log("address not found");
@@ -89,7 +93,11 @@ router.post('/', function (req, res, next) {
               (insertError) => {
                 if (insertError) {
                   console.log("Failed to insert data: " + insertError);
-                  return res.status(500).json({ error: "Failed to insert new user claim" });
+                  return res.json({
+                    status: false,
+                    message: "Failed to insert new user claim"
+                  });
+                  // return res.status(500).json({ error: "Failed to insert new user claim" });
                 } else {
                   console.log("Successfully added new user claim.");
                   myAPI.send(process.env.AMOUNT,address,"USDT",false).then(d=>{

@@ -45,7 +45,7 @@ router.post('/', function (req, res, next) {
             let timeDifference = now - claimed; // Difference in milliseconds
 
             // Convert the difference into minutes
-            let minutesWaited = timeDifference / (1000 * 60 * 60); // milliseconds to minutes
+            let minutesWaited = timeDifference / (1000 * 60); // milliseconds to minutes
 
             console.log(minutesWaited);
             // Check if the user has waited more than 30 minutes

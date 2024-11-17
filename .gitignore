@@ -8,3 +8,4 @@ package-lock.json
 # sass/
 # utility/
 # views/
+.env

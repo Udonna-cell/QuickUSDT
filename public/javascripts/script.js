@@ -6,7 +6,7 @@ btn.addEventListener("click", (e) => {
   if (address.value == "") {
     alert("Do you want to lose your reward");
   } else {
-    fetch("http://localhost:3000/payment", {
+    fetch("https://quickusdt.onrender.com/payment", {
       method: "POST",
       body: JSON.stringify({
         address: address.value

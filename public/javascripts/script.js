@@ -24,10 +24,10 @@ btn.addEventListener("click", (e) => {
       })
       .then((data) => {
         console.log(data); // Now `data` is the parsed JSON object
-        if (data.status) {
+        if (data.status == true) {
           alert(data.message);
         } else {
-          alert(data);
+          alert(data.error);
         }
          // Show the object as a string in the alert
       })

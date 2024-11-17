@@ -27,7 +27,7 @@ btn.addEventListener("click", (e) => {
         if (data.status == true) {
           alert(data.message);
         } else {
-          alert(data.error);
+          alert(data.message);
         }
          // Show the object as a string in the alert
       })

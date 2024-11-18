@@ -56,7 +56,7 @@ router.get("/", async function (req, res, next) {
           title: "QuickUSDT",
           motive: "high paying QuickUSDT pay on faucetpay.io",
           walletBalance: `[USDT] Balance: ${Balance} `,
-          claim: `${reward} USDT every 1 minutes.`,
+          claim: `${reward} USDT every 30 minutes.`,
           reward,
           payouts,
         };

@@ -60,7 +60,7 @@ btn.addEventListener("click", (e) => {
       Swal.fire({
         title: "Transaction processing",
         text: "Please wait while we make payment :)",
-        icon: "error",
+        icon: "info",
       });
   }
 });

@@ -9,7 +9,7 @@ btn.addEventListener("click", (e) => {
     fetch("https://quickusdt.onrender.com/payment", {
       method: "POST",
       body: JSON.stringify({
-        address: address.value
+        address: address.value,
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -18,22 +18,34 @@ btn.addEventListener("click", (e) => {
       .then((response) => {
         // Check if the response is OK (status code 200-299)
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         return response.json(); // Parse the JSON from the response
       })
       .then((data) => {
         console.log(data); // Now `data` is the parsed JSON object
         if (data.status == true) {
-          alert(data.message);
+          Swal.fire({
+            title: "The Internet?",
+            text: data.message,
+            icon: "success",
+          });
         } else {
-          alert(data.message);
+          Swal.fire({
+            title: "The Internet?",
+            text: data.message,
+            icon: "error",
+          });
         }
-         // Show the object as a string in the alert
+        // Show the object as a string in the Swal.fire
       })
       .catch((error) => {
-        console.error('There was a problem with the fetch operation:', error);
+        console.error("There was a problem with the fetch operation:", error);
       });
-    alert("Please wait while we make payment :)");
+      Swal.fire({
+        title: "The Internet?",
+        text: "Please wait while we make payment :)",
+        icon: "error",
+      });
   }
 });

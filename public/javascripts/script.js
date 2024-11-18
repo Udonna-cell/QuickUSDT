@@ -34,12 +34,17 @@ btn.addEventListener("click", (e) => {
             title: "Claimed",
             text: data.message,
             icon: "success",
+          }).then(d=>{
+            window.location.reload()
           });
+          
         } else {
           Swal.fire({
             title: "Failed to claim",
             text: data.message,
             icon: "error",
+          }).then(d=>{
+            window.location.reload()
           });
         }
         // Show the object as a string in the Swal.fire

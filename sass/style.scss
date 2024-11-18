@@ -97,3 +97,37 @@ p.label {
     bottom: 0;
     left: 50%;
 }
+
+.load {
+  margin: 5px auto;
+  width: 25px;
+  height: 25px;
+  border-top: 5px solid #fff;
+  border-bottom: 5px solid #fff;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-radius: 50%;
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  display: none;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(360deg);
+  }
+  60% {
+    transform: rotate(50deg);
+  }
+  90% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

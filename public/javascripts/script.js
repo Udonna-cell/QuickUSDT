@@ -1,13 +1,17 @@
 let btn = document.querySelector("button.btn.btn-primary");
 let address = document.querySelector("input[type=email]");
+let spin = document.querySelector(".load")
 
 btn.addEventListener("click", (e) => {
   e.preventDefault();
+  spin.style.display = "block"
   if (address.value == "") {
     Swal.fire({
       title: "Missing Address",
       text: "Do you want to lose your reward",
       icon: "warning",
+    }).then(d=>{
+      spin.style.display = "none"
     });
   } else {
     Swal.fire({
@@ -17,7 +21,7 @@ btn.addEventListener("click", (e) => {
       showConfirmButton: false,
       timer: 1500
     }).then((value) => {
-      if (value) {
+      if (true) {
         fetch("https://quickusdt.onrender.com/payment", {
           method: "POST",
           body: JSON.stringify({
@@ -42,6 +46,7 @@ btn.addEventListener("click", (e) => {
                 text: data.message,
                 icon: "success",
               }).then((d) => {
+                spin.style.display = "none"
                 window.location.reload();
               });
             } else {
@@ -50,6 +55,7 @@ btn.addEventListener("click", (e) => {
                 text: data.message,
                 icon: "error",
               }).then((d) => {
+                spin.style.display = "none"
                 window.location.reload();
               });
             }
@@ -64,6 +70,8 @@ btn.addEventListener("click", (e) => {
               title: "Claim error",
               text: "Failed to claim please try again",
               icon: "error",
+            }).then(d=>{
+              spin.style.display = "none"
             });
           });
       }

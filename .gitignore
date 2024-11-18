@@ -3,7 +3,7 @@
 node_modules/
 # package.json
 package-lock.json
-public/stylesheets/*
+public/
 # routes/
 # sass/
 # utility/

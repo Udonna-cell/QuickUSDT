@@ -2,6 +2,44 @@ let btn = document.querySelector("button.btn.btn-primary");
 let address = document.querySelector("input[type=email]");
 let spin = document.querySelector(".load");
 
+
+
+
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checkCookie(input) {
+  let username = getCookie(input);
+  if (username != "") {
+   address.value = username
+   return true
+  } else {
+    return false
+  }
+}
+
+checkCookie("address")
+
 btn.addEventListener("click", (e) => {
   e.preventDefault();
   spin.style.display = "block";
@@ -14,6 +52,10 @@ btn.addEventListener("click", (e) => {
       spin.style.display = "none";
     });
   } else {
+    let isCookieSet = checkCookie("address")
+    if (isCookieSet == false) {
+      setCookie("address", (address.value), 365);
+    }
     Swal.fire({
       title: "Transaction processing",
       text: "Please wait while we make payment :)",

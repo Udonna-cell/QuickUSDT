@@ -1,5 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+body {
+  background-color: #f0d8d8;
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  padding-bottom: 4rem;
+  text-align: center;
+  min-height: 100vh;
+  position: relative;
+}
+
+h2 {
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
+.balance {
+  background-color: rgba(64, 128, 184, 0.5333333333);
+  color: #2e4e94;
+  padding: 1rem;
+  margin: 1rem auto;
+}
+
+.claim {
+  background-color: rgba(172, 255, 47, 0.445);
+  color: rgb(5, 99, 5);
+  padding: 1rem;
+}
+
+.wallet {
+  margin: 1rem auto;
+}
+.wallet > div {
+  background: white;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin-top: 5px;
+}
+.wallet > div > input {
+  outline: none;
+  border: none;
+  font-size: medium;
+}
+
+.payment > h3 {
+  color: rgba(43, 43, 43, 0.692);
+  text-transform: capitalize;
+  font-size: larger;
+}
+.payment > table {
+  border: 1px solid;
+  border-collapse: collapse;
+}
+.payment > table tr:nth-child(even) {
+  background: rgba(78, 77, 77, 0.1);
+}
+.payment > table tr > td {
+  border: 1px solid;
+  padding: 0px 0.5rem;
+  text-wrap: wrap;
+  overflow-y: scroll;
+}
+
+button.btn.btn-primary {
+  background: #2e4e94;
+  color: white;
+  padding: 0.7rem;
+  border-radius: 5px;
+  border: none;
+  margin-top: 10px;
+  width: 150px;
+  font-size: medium;
+}
+button.btn.btn-primary:active {
+  transform: scale(0.96);
+}
+
+p.label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  bottom: 0;
+  left: 50%;
+}
+
+.load {
+  margin: 5px auto;
+  width: 25px;
+  height: 25px;
+  border-top: 5px solid #fff;
+  border-bottom: 5px solid #fff;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-radius: 50%;
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  display: none;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(360deg);
+  }
+  60% {
+    transform: rotate(50deg);
+  }
+  90% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

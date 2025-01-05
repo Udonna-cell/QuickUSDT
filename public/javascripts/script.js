@@ -1,6 +1,7 @@
 let btn = document.querySelector("button.btn.btn-primary");
 let address = document.querySelector("input[type=email]");
 let spin = document.querySelector(".load");
+let urlBase = window.location.origin
 
 
 
@@ -64,7 +65,7 @@ btn.addEventListener("click", (e) => {
       timer: 1500,
     }).then((value) => {
       if (true) {
-        fetch("https://quickusdt.onrender.com/payment", {
+        fetch(`${urlBase}/payment`, {
           method: "POST",
           body: JSON.stringify({
             address: address.value,

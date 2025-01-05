@@ -1,12 +1,11 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const mysql = require("mysql");
-const { API } = require('faucetpayjs');
+const { API } = require("faucetpayjs");
 const myAPI = new API(process.env.API_KEY);
 
-
 /* POST users listing. */
-router.post('/', function (req, res, next) {
+router.post("/", function (req, res, next) {
   // Extract the 'address' from the request body
   let { address } = req.body;
   let result = { address };
@@ -27,101 +26,103 @@ router.post('/', function (req, res, next) {
     } else {
       // Query the database to check if the user with the given address exists
       connection.query(
-        'SELECT * FROM `transactions` WHERE address = ? ORDER BY time DESC;',
+        "SELECT * FROM `transactions` WHERE address = ? ORDER BY time DESC LIMIT 1;",
         [address],
         (error, results) => {
           if (error) {
-            console.log("Query error: " + error);
-            return res.status(500).json({ error: "Database query failed" });
+            console.error("Query error:", error);
+            return res
+              .status(500)
+              .json({ status: false, message: "Database query failed" });
           }
 
-          // If the user exists in the database
+          const now = new Date();
+          const THIRTY_MINUTES = 30; // Define the wait time in minutes
+          const claimAmount = process.env.AMOUNT * Math.pow(10, -8); // Convert to appropriate amount
+
           if (results.length > 0) {
-            // Get the time when the user last claimed (in 'time' column)
-            let claimed = new Date(results[0].time);
+            const lastClaimed = new Date(results[0].time);
+            const minutesSinceLastClaim = (now - lastClaimed) / (1000 * 60);
 
-            // Get the current time
-            let now = new Date();
-            let timeDifference = now - claimed; // Difference in milliseconds
-
-            // Convert the difference into minutes
-            let minutesWaited = timeDifference / (1000 * 60); // milliseconds to minutes
-
-            console.log(minutesWaited);
-            // Check if the user has waited more than 30 minutes
-            if (minutesWaited > 30) {
-              console.log("User has waited more than 30 minutes.");
-
-              // If so, insert a new record into the database (claim)
+            if (minutesSinceLastClaim > THIRTY_MINUTES) {
+              // User is eligible to claim
               connection.query(
-                "INSERT INTO `transactions` ( `address`, `amount`) VALUES (?, ?)",
-                [ address, (process.env.AMOUNT * Math.pow(10, -8))], // Here, the placeholder '?' will be replaced by actual values
+                "INSERT INTO `transactions` (`address`, `amount`) VALUES (?, ?)",
+                [address, claimAmount],
                 (insertError) => {
                   if (insertError) {
-                    console.log("Failed to insert data: " + insertError);
+                    console.error("Insert error:", insertError);
                     return res.json({
                       status: false,
-                      message: "no reward sent and unrecorded"
-                    });
-                    // return res.status(500).json({ error: "Failed to insert new claim" });
-                  } else {
-                    console.log("Successfully added new claim info.");
-                    myAPI.send(process.env.AMOUNT,address,"USDT",false).then(d=>{
-                      console.dir(d);
-                      
-                    })
-                    res.json({
-                      status: true,
-                      message: "reward sent and recorded"
+                      message: "Failed to record the claim",
                     });
                   }
+
+                  console.log("New claim recorded successfully.");
+                  myAPI
+                    .send(process.env.AMOUNT, address, "USDT", false)
+                    .then((response) => {
+                      console.log("Reward sent:", response);
+                      res.json({
+                        status: true,
+                        message: "Reward sent and recorded",
+                      });
+                    })
+                    .catch((sendError) => {
+                      console.error("Failed to send reward:", sendError);
+                      res.json({ status: false, message: "Reward not sent" });
+                    });
                 }
               );
             } else {
-              console.log("User has not yet waited 30 minutes.");
+              // User must wait longer
+              const timeRemaining = Math.ceil(
+                THIRTY_MINUTES - minutesSinceLastClaim
+              );
+              console.log(`User must wait ${timeRemaining} more minutes.`);
               res.json({
                 status: false,
-                message: "User has not yet waited 30 minutes."
+                message: `Please wait ${timeRemaining} more minutes to claim.`,
               });
             }
           } else {
-            console.log("address not found");
-            // If the user doesn't exist in the database, create a new record
+            // New user - allow immediate claim
             connection.query(
               "INSERT INTO `transactions` (`address`, `amount`) VALUES (?, ?)",
-              [address, (process.env.AMOUNT * Math.pow(10, -8))], // Insert a new claim record for the user
+              [address, claimAmount],
               (insertError) => {
                 if (insertError) {
-                  console.log("Failed to insert data: " + insertError);
+                  console.error("Insert error:", insertError);
                   return res.json({
                     status: false,
-                    message: "Failed to insert new user claim"
+                    message: "Failed to record the new user claim",
                   });
-                  // return res.status(500).json({ error: "Failed to insert new user claim" });
-                } else {
-                  console.log("Successfully added new user claim.");
-                  myAPI.send(process.env.AMOUNT,address,"USDT",false).then(d=>{
-                      console.dir(d);
-                      
-                    })
-                  res.json({
-                      status: true,
-                      message: "reward sent and recorded"
-                    });
                 }
+
+                console.log("New user claim recorded successfully.");
+                myAPI
+                  .send(process.env.AMOUNT, address, "USDT", false)
+                  .then((response) => {
+                    console.log("Reward sent:", response);
+                    res.json({
+                      status: true,
+                      message: "Reward sent and recorded",
+                    });
+                  })
+                  .catch((sendError) => {
+                    console.error("Failed to send reward:", sendError);
+                    res.json({ status: false, message: "Reward not sent" });
+                  });
               }
             );
           }
 
-          // Close the database connection after the operation
+          // Ensure the connection is closed
           connection.end((endError) => {
             if (endError) {
-              console.log("Error closing connection: " + endError);
+              console.error("Error closing connection:", endError);
             }
           });
-
-          // Send a JSON response with the user address (or additional data if needed)
-          
         }
       );
     }

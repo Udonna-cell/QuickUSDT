@@ -1,9 +1,16 @@
 extends layout
 
 block content
+  .logo 
+    include ./assets/icons8-tether-logo.svg
   h1= title
   h2= motive
+  p To claim your tokens, provide your FaucetPay email. Without a valid account, you won't receive your tokens. 
+  p If you don't already have a FaucetPay account, please register now using the link below: 
+    a(href="https://faucetpay.io/?r=5207963") faucetpay.io
   .balance 
+    div.icon 
+      img(src="/images/icons8-wallet-50.png" alt="wallet")
     p= walletBalance
   .claim 
     p= claim
@@ -15,16 +22,19 @@ block content
       .load 
   .payment 
     h3 Recent payouts 
-    table 
-      tr 
-        td Date 
-        td Address 
-        td Reward
-      each pay in payouts
-        tr 
-          td= pay.time
-          td= pay.address
-          td= pay.amount
+    .table 
+      .thead
+        .tr 
+          .td Date 
+          .td Address 
+          .td Reward
+      .tbody
+        each pay in payouts
+          .tr 
+            .td= pay.time
+            .td= pay.address
+            .td.amount= pay.amount 
+              include ./assets/icons8-tether.svg
 
 
   p.label Welcome to #{title}

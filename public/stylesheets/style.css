@@ -6,12 +6,13 @@
 }
 
 body {
-  background-color: #f0d8d8;
+  background-color: #fcfcfc;
   font-family: "Open Sans", sans-serif;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   flex-direction: column;
   padding: 1rem;
+  padding-top: 2rem;
   padding-bottom: 4rem;
   text-align: center;
   min-height: 100vh;
@@ -28,6 +29,13 @@ h2 {
   color: #2e4e94;
   padding: 1rem;
   margin: 1rem auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.balance > div {
+  width: 55px;
+  height: 55px;
 }
 
 .claim {
@@ -44,36 +52,31 @@ h2 {
   border-radius: 5px;
   padding: 0.5rem;
   margin-top: 5px;
+  max-width: 395px;
+  height: 56px;
+  border-radius: 1rem;
+  border: 1px solid #282828;
 }
 .wallet > div > input {
   outline: none;
   border: none;
   font-size: medium;
+  height: 100%;
 }
 
+.payment {
+  margin-top: 1rem;
+}
 .payment > h3 {
   color: rgba(43, 43, 43, 0.692);
   text-transform: capitalize;
   font-size: larger;
 }
-.payment > table {
-  border: 1px solid;
-  border-collapse: collapse;
-}
-.payment > table tr:nth-child(even) {
-  background: rgba(78, 77, 77, 0.1);
-}
-.payment > table tr > td {
-  border: 1px solid;
-  padding: 0px 0.5rem;
-  text-wrap: wrap;
-  overflow-y: scroll;
-}
 
 button.btn.btn-primary {
   background: #2e4e94;
   color: white;
-  padding: 0.7rem;
+  padding: 1.2rem;
   border-radius: 5px;
   border: none;
   margin-top: 10px;
@@ -106,6 +109,33 @@ p.label {
   animation-iteration-count: infinite;
   animation-fill-mode: both;
   display: none;
+}
+
+.table {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.thead > .tr,
+.tbody > .tr {
+  display: grid;
+  grid-template-columns: 55px 1fr 100px;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.td {
+  word-wrap: break-word;
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scrollbar-width: none;
+}
+
+.amount {
+  flex-direction: column;
 }
 
 @keyframes spin {

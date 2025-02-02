@@ -12,11 +12,49 @@ body {
   align-items: stretch;
   flex-direction: column;
   padding: 1rem;
-  padding-top: 2rem;
+  padding-top: 5rem;
   padding-bottom: 4rem;
   text-align: center;
   min-height: 100vh;
   position: relative;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+nav > .nav-head a {
+  color: #000;
+  font-family: "Jost", sans-serif;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+nav > menu ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  gap: 1.5rem;
+  font-size: large;
+  font-weight: 600;
+}
+
+nav > menu ul > li {
+  cursor: pointer;
+}
+
+nav > menu ul > li:hover {
+  color: rgb(36, 127, 189);
+  text-decoration: underline;
 }
 
 h2 {

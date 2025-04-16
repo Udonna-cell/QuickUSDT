@@ -5,9 +5,9 @@ block content
     include ./assets/icons8-tether-logo.svg
   h1= title
   h2= motive
-  p To claim your tokens, provide your FaucetPay email. Without a valid account, you won't receive your tokens. 
-  p If you don't already have a FaucetPay account, please register now using the link below: 
-    a(href="https://faucetpay.io/?r=5207963") faucetpay.io
+  include ./components/tag.pug
+  p To claim your tokens, provide your FaucetPay email. Without a valid account, you won't receive your tokens.
+  include ./components/warning.pug
   .balance 
     div.icon 
       img(src="/images/icons8-wallet-50.png" alt="wallet")

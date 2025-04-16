@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: #fcfcfc;
+  background-color: #0b0c1a;
   font-family: "Open Sans", sans-serif;
   display: flex;
   align-items: stretch;
@@ -17,6 +17,64 @@ body {
   text-align: center;
   min-height: 100vh;
   position: relative;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.tag {
+  background-color: rgb(28, 29, 34);
+  color: #fff;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  text-transform: capitalize;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin: auto;
+}
+
+.warning {
+  border: 1px solid rgb(247, 101, 2);
+  border-radius: 10px;
+  overflow: hidden;
+  width: 300px;
+  margin: auto;
+}
+.warning > .heading {
+  border-bottom: 1px solid rgb(247, 101, 2);
+  display: flex;
+  width: 100%;
+}
+.warning > .heading > h4 {
+  padding: 0.5rem;
+  color: #000000;
+  background-color: #F76502;
+  flex-grow: 1;
+}
+.warning > .heading > .pattern {
+  flex-grow: 1;
+  position: relative;
+  background-image: url("/images/pattern.svg");
+  width: 100px;
+}
+.warning > .heading > .pattern > button {
+  background-color: #000000;
+  border: none;
+  position: absolute;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  top: 0;
+  right: 1px;
+}
+.warning > .heading > .pattern > button > img {
+  width: 25px;
+}
+.warning > .message {
+  background-color: #000000;
+  color: #F76502;
+  font-size: small;
+  padding: 1rem 0;
 }
 
 nav {
@@ -60,6 +118,7 @@ nav > menu ul > li:hover {
 h2 {
   text-transform: uppercase;
   margin-top: 0.5rem;
+  color: #fff;
 }
 
 .balance {

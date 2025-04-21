@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { API } = require("FaucetPayJS");
 const myAPI = new API(process.env.API_KEY);
+const DataBase = require("./database/index")
 
 const mysql = require("mysql");
 

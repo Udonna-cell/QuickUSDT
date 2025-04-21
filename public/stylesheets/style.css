@@ -1,4 +1,143 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+.register {
+  background-color: rgb(7, 7, 7);
+  padding: 2rem;
+  color: gray;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  border-radius: 10px;
+}
+.register > form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.register > form > article > p {
+  margin: 0.7rem 0;
+}
+.register > form > .referral-indicator {
+  background-color: rgb(17, 16, 16);
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin: 1rem 0;
+}
+.register > form > .referral-indicator > p > span {
+  color: white;
+  text-transform: capitalize;
+}
+.register > form > .names {
+  display: flex;
+  gap: 2rem;
+}
+.register > form > .names > .first-name {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.register > form > .names > .last-name {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.register > form > .username {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.register > form > .username > input {
+  width: 100%;
+}
+.register > form > .email {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.register > form > .email > input {
+  background-color: rgb(14, 13, 13);
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-size: medium;
+  font-weight: 500;
+  color: white;
+  width: 100%;
+}
+.register > form > .password {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.register > form > .password > input {
+  background-color: rgb(14, 13, 13);
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-size: medium;
+  font-weight: 500;
+  color: white;
+  width: 100%;
+}
+.register > form > .confirm-password {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.register > form > .confirm-password > input {
+  background-color: rgb(14, 13, 13);
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-size: medium;
+  font-weight: 500;
+  color: white;
+  width: 100%;
+}
+.register > form > .btn {
+  margin: 1rem 0;
+}
+.register > form > p > a {
+  color: white;
+}
+.register input#first-name,
+.register input#last-name {
+  width: 100%;
+}
+
+label {
+  color: white;
+  text-transform: capitalize;
+  margin-bottom: 0.3rem;
+}
+
+input[type=text] {
+  background-color: rgb(14, 13, 13);
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-size: medium;
+  font-weight: 500;
+  color: white;
+}
+
+input {
+  outline-color: rgb(0, 255, 170);
+  outline-width: 100px;
+}
+
+button.btn {
+  background-color: white;
+  color: black;
+  padding: 0.6rem;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+button.btn:active {
+  transform: scale(0.99);
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -123,7 +262,7 @@ h2 {
 
 .balance {
   background-color: rgba(64, 128, 184, 0.5333333333);
-  color: #2e4e94;
+  color: #1259f0;
   padding: 1rem;
   margin: 1rem auto;
   display: flex;

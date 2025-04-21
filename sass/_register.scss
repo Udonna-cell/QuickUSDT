@@ -1,0 +1,139 @@
+.register {
+  background-color: rgb(7, 7, 7);
+  padding: 2rem;
+  color: gray;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  border-radius: 10px;
+
+  & > form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    & > article > p {
+      margin: 0.7rem 0;
+    }
+    & > .referral-indicator {
+      background-color: rgb(17, 16, 16);
+      padding: 0.5rem;
+      border-radius: 5px;
+      margin: 1rem 0;
+      & > p {
+        & > span {
+          color: white;
+          text-transform: capitalize;
+        }
+      }
+    }
+    & > .names {
+      display: flex;
+      gap: 2rem;
+      & > .first-name {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+      }
+      & > .last-name {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+      }
+    }
+    & > .username {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      & > input {
+        width: 100%;
+      }
+    }
+    & > .email {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      & > input {
+        background-color: rgb(14, 13, 13);
+        padding: 0.5rem;
+        border: 1px solid white;
+        border-radius: 5px;
+        font-size: medium;
+        font-weight: 500;
+        color: white;
+        width: 100%;
+      }
+    }
+    & > .password {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      & > input {
+        background-color: rgb(14, 13, 13);
+        padding: 0.5rem;
+        border: 1px solid white;
+        border-radius: 5px;
+        font-size: medium;
+        font-weight: 500;
+        color: white;
+        width: 100%;
+      }
+    }
+    & > .confirm-password {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      & > input {
+        background-color: rgb(14, 13, 13);
+        padding: 0.5rem;
+        border: 1px solid white;
+        border-radius: 5px;
+        font-size: medium;
+        font-weight: 500;
+        color: white;
+        width: 100%;
+      }
+    }
+    & > .btn {
+      margin: 1rem 0;
+    }
+    & > p > a {
+      color: white;
+    }
+  }
+
+  & input#first-name,
+  input#last-name {
+    width: 100%;
+    // flex-grow: 1;
+  }
+}
+label {
+  color: white;
+  text-transform: capitalize;
+  margin-bottom: 0.3rem;
+}
+input[type="text"] {
+  background-color: rgb(14, 13, 13);
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-size: medium;
+  font-weight: 500;
+  color: white;
+}
+input {
+  outline-color: rgb(0, 255, 170);
+  outline-width: 100px;
+}
+button.btn {
+    background-color: white;
+    color: black;
+    padding: 0.6rem;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+button.btn:active {
+    transform: scale(0.99);
+}

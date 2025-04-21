@@ -30,6 +30,7 @@ router.get("/", async function (req, res, next) {
       console.log("Failed to connect to LOCAl");
     }
   }
+  res.redirect("/register")
 });
 
 module.exports = router;

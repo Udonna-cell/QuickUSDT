@@ -3,7 +3,7 @@ extends layout
 block content
     .register 
         if isSignup
-            form(action="?r=stabug" method="post")
+            form(action="" method="post")
                 article 
                     h2 Create an account 
                     p Register with email connected to faucetPay.io 
@@ -17,25 +17,26 @@ block content
                 .names  
                     .first-name 
                         label(for="first-name") First name
-                        input#first-name(type="text" name="first-name" placeholder="John", required) 
+                        input#first-name(type="text" name="first-name" placeholder="John", value= user ? user.firstName : "", required) 
                     .last-name 
                         label(for="last-name") last name
-                        input#last-name(type="text" name="last-name" placeholder="Doe", required)
+                        input#last-name(type="text" name="last-name" placeholder="Doe", value= user ? user.lastName : "", required)
 
                 //- user operation username input field
                 .username  
                     label(for="username") username
-                    input#username(type="text" name="username" placeholder="johndoe", required)
+                    input#username(type="text" name="username" placeholder="johndoe", value= user ? user.username : "", required)
 
                 //- email field
                 .email 
                     label(for="email") email
-                    input#email(type="email" name="email" placeholder="John@gmail.com", required)
+                    input#email(type="email" name="email" placeholder="John@gmail.com", value= user ? user.email : "", autocomplete="false",  required)
 
                 //- password field
                 .password  
                     label(for="password") password
-                    input#password(type="password" name="password" placeholder="password", required)
+                    input#password(type="password" name="password" placeholder="password", value= user ? user.password : "", required)
+                    .eye(onclick="hideShow()")
 
                 //- confirm password field
                 .confirm-password 
@@ -54,12 +55,13 @@ block content
                 //- email field
                 .email 
                     label(for="email") email
-                    input#email(type="email" name="email" placeholder="John@gmail.com", required)
+                    input#email(type="email" name="email" placeholder="John@gmail.com", value= user ? user.email : "", required)
 
                 //- password field
                 .password  
                     label(for="password") password
-                    input#password(type="password" name="password" placeholder="password", required)
+                    input#password(type="password" name="password" placeholder="password", value= user ? user.password : "", required)
+                    .eye(onclick="hideShow()")
 
                 button.btn(type="submit") Login
                 p Don't have an account? 

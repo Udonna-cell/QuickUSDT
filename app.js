@@ -10,6 +10,13 @@ var usersRouter = require('./routes/users');
 const register = require("./routes/register")
 const signIn = require("./routes/signin")
 
+// creating connection to the database
+/* 
+  this connection is once and it will try connecting to Global database if failed it will try to local instantly
+*/
+const InitDatabase = require("./utility/database/init")
+InitDatabase()
+
 var app = express();
 
 // view engine setup

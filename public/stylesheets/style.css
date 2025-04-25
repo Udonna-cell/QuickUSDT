@@ -67,6 +67,7 @@
   display: flex;
   flex-direction: column;
   align-items: start;
+  position: relative;
 }
 .register > form > .password > input {
   background-color: rgb(14, 13, 13);
@@ -77,6 +78,18 @@
   font-weight: 500;
   color: white;
   width: 100%;
+}
+.register > form > .password > .eye {
+  background: red;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  bottom: 5px;
+  right: 2.5px;
+  border-radius: 5px;
+}
+.register > form > .password > .eye.active {
+  background: greenyellow;
 }
 .register > form > .confirm-password {
   display: flex;
@@ -134,7 +147,8 @@ button.btn {
   font-size: 0.9rem;
 }
 
-button.btn:active {
+button.btn:active,
+.eye:active {
   transform: scale(0.99);
 }
 

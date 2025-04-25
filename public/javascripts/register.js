@@ -5,6 +5,8 @@ let email = document.querySelector("input#email");
 let password = document.querySelector("input#password");
 let confirmPassword = document.querySelector("input#confirm-password");
 const form = document.querySelector("form")
+// confirmation variables
+let isPasswordVisible = false
 
 
 form.addEventListener("submit", (event)=>{
@@ -16,4 +18,17 @@ form.addEventListener("submit", (event)=>{
     event.preventDefault()
     password.value = ""
     confirmPassword.value = ""
+    alert("password confirmation didn't match the password :(")
 })
+
+function hideShow() {
+    if (!isPasswordVisible) {
+        password.type = "text"
+        document.querySelector(".eye").classList.add("active")
+        isPasswordVisible =true
+    } else {
+        password.type = "password"
+        document.querySelector(".eye").classList.remove("active")
+        isPasswordVisible = false
+    }
+}

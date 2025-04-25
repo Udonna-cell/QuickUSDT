@@ -1,7 +1,5 @@
 const express =  require("express")
 const router = express.Router();
-// const Database = require("../utility/database/index.js");
-// const { LOCAL, GLOBAL } = require("../utility/database/key.js");
 const compile = require("../utility/scssCompile.js")
 
 /* GET home page. */

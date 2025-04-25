@@ -8,6 +8,7 @@ const {
   checkEmail,
   checkUsername,
 } = require("../utility/database/checkExist.js");
+const { insertRecord } = require("../utility/database/insertRecord.js");
 /* GET home page. */
 router.get("/", async function (req, res, next) {
   // Compiling scss file to css for development
@@ -29,14 +30,21 @@ router.post("/", async function (req, res, next) {
   };
   let isUsernameValid = await checkUsername(user.username);
   let isEmailValid = await checkEmail(user.email);
-
+  console.log(isEmailValid, isUsernameValid);
   if (isEmailValid || isUsernameValid) {
-    user.email = (isEmailValid)? "" : user.email
-    user.username = (isUsernameValid)? "" : user.username
+    user.email = isEmailValid ? "" : user.email;
+    user.username = isUsernameValid ? "" : user.username;
     console.log(user);
     // this is the person that owns the referral link
     let invitee = req.query.r || "null";
     res.render("register", { invitee, isSignup: true, user });
+  } else {
+    let feedBack = await insertRecord(user);
+    if (feedBack) {
+      res.send("/Dashboard");
+    } else {
+      res.send("Can't add record");
+    }
   }
 });
 module.exports = router;

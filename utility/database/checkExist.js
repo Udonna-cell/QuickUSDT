@@ -7,7 +7,6 @@ async function checkUsername(params) {
     let obtain = await db.query("SELECT * FROM `users` WHERE username = ?", [
       params,
     ]);
-
     return obtain.results.length > 0 ? true : false;
   } catch (error) {
     console.log(error);

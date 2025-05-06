@@ -6,7 +6,6 @@ const express = require("express");
 const router = express.Router();
 // const { API } = require("faucetpayjs");
 // const myAPI = new API(process.env.API_KEY);
-const Database = require("../utility/database/index.js");
 const compile = require("../utility/scssCompile.js")
 
 /* GET home page. */

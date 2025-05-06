@@ -1,4 +1,7 @@
 @use "register";
+@use "global" as *;
+@use "dashbaord";
+@use "balance";
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
 * {
@@ -7,24 +10,18 @@
   box-sizing: border-box;
 }
 
-$bg: #0b0c1a;
-$vibrant-dark: #1259f0;
-$vibrant: #4080b888;
-$border-color: #282828;
-$heading: #fff;
-$txt: rgba(255, 255, 255, 0.8);
+
 
 body {
   background-color: $bg;
-  font-family: "Open Sans", sans-serif;
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
-  padding: 1rem;
-  padding-top: 5rem;
-  padding-bottom: 4rem;
-  text-align: center;
   min-height: 100vh;
+  font-family: "Open Sans", sans-serif;
+  // display: flex;
+  // align-items: stretch;
+  // flex-direction: column;
+  padding: 1rem;
+  // padding-top: 5rem;
+  // padding-bottom: 4rem;
   position: relative;
   color: $txt;
 }
@@ -129,21 +126,7 @@ h2 {
   margin-top: 0.5rem;
   color: $heading;
 }
-.balance {
-  // $vibrant-dark: rgb(7, 247, 7);
-  background-color: $vibrant;
-  color: $vibrant-dark;
-  padding: 1rem;
-  margin: 1rem auto;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
 
-  & > div {
-    width: 55px;
-    height: 55px;
-  }
-}
 .claim {
   background-color: rgba(172, 255, 47, 0.445);
   color: rgb(5, 99, 5);

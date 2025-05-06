@@ -9,12 +9,13 @@ var paymentRouter = require('./routes/payment');
 var usersRouter = require('./routes/users');
 const register = require("./routes/register")
 const signIn = require("./routes/signin")
+const dashboard = require("./routes/dashboard")
 
 // creating connection to the database
 /* 
   this connection is once and it will try connecting to Global database if failed it will try to local instantly
 */
-const InitDatabase = require("./utility/database/init")
+const InitDatabase = require("./utility/database/init");
 InitDatabase()
 
 var app = express();
@@ -26,6 +27,7 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+// app.use(session())
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -34,6 +36,7 @@ app.use('/users', usersRouter);
 app.use('/payment', paymentRouter);
 app.use('/register', register);
 app.use('/signin', signIn);
+app.use('/dashboard', dashboard);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

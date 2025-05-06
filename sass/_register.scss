@@ -4,8 +4,9 @@
   color: gray;
   width: 100%;
   max-width: 400px;
-  margin: auto;
   border-radius: 10px;
+  margin: 2rem auto;
+  text-align: center;
 
   & > form {
     display: flex;
@@ -138,16 +139,24 @@ input[type="text"] {
 input {
   outline-color: rgb(0, 255, 170);
   outline-width: 100px;
+  padding: 0.5rem;
+
+  background-color: rgb(14, 13, 13);
+  border: 1px solid white;
+  border-radius: 5px;
+  font-size: medium;
+  font-weight: 500;
+  color: white;
 }
 button.btn {
-    background-color: white;
-    color: black;
-    padding: 0.6rem;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 0.9rem;
+  background-color: white;
+  color: black;
+  padding: 0.6rem;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.9rem;
 }
 button.btn:active,
 .eye:active {
-    transform: scale(0.99);
+  transform: scale(0.99);
 }

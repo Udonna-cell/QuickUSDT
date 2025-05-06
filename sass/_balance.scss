@@ -1,0 +1,35 @@
+@use "global" as *;
+
+.balance {
+  // $vibrant-dark: rgb(7, 247, 7);
+  background-color: $vibrant;
+  color: $vibrant-dark;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin: 1rem auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  & > .icon {
+    background: red;
+    border-radius: 5px;
+    width: 25px;
+    height: 25px;
+  }
+
+  & > p {
+    text-transform: capitalize;
+  }
+
+  & > div {
+    width: 55px;
+    height: 55px;
+  }
+}
+
+.withdraw {
+    display: flex;
+    justify-content: center;
+    
+}

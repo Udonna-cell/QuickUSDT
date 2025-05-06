@@ -3,6 +3,7 @@ const router = express.Router();
 const compile = require("../utility/scssCompile.js");
 const { checkEmail } = require("../utility/database/checkExist.js");
 const { checkMatch } = require("../utility/database/checkMatchPassword.js");
+const Database = require("../utility/database/index.js");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
@@ -17,12 +18,12 @@ router.post("/", async function (req, res, next) {
   };
   //   check if email is valid
   let isEmailValid = await checkEmail(user.email);
-  console.log(isEmailValid);
+
   let isPAsswordMatch = await checkMatch(user.password, user.email);
 
   if (!isEmailValid) {
-    user.email = isEmailValid ? "" : user.email;
-    user.password = isPAsswordMatch ? "" : user.password;
+    user.email = isEmailValid ? user.email : "";
+    user.password = isPAsswordMatch ? user.password : "";
     // console.log(user);
     // this is the person that owns the referral link
     let invitee = req.query.r || "null";
@@ -30,10 +31,27 @@ router.post("/", async function (req, res, next) {
   } else {
     // let feedBack = await insertRecord(user);
     if (isPAsswordMatch) {
-      res.send("/Dashboard");
+      let DB = new Database();
+      try {
+        let ID = await DB.query("SELECT ID FROM users WHERE email = ?", [
+          user.email,
+        ]);
+        ID = JSON.parse(JSON.stringify(ID.results));
+        ID = ID[0];
+        console.log(ID);
+        res.cookie("ID", ID.ID, {
+          maxAge: 900000,
+          httpOnly: true,
+          secure: false,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+
+      res.redirect("/dashboard");
     } else {
-      user.email = isEmailValid ? "" : user.email;
-      user.password = isPAsswordMatch ? "" : user.password;
+      user.email = isEmailValid ? user.email : "";
+      user.password = isPAsswordMatch ? user.password : "";
       // this is the person that owns the referral link
       let invitee = req.query.r || "null";
       //   res.send("Can't add record");

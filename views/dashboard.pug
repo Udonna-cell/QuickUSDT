@@ -1,2 +1,11 @@
+extends layout
+
 block content 
-    
+    header.dashbaord
+        h2 dashboard 
+        p welcome back, #{user.username}
+    .balance 
+        .icon 
+        p balance: 0.00001$
+    .withdraw 
+        input#amount(type="number", name="amount", placeholder="Min. 0.001")

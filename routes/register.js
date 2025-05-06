@@ -1,14 +1,11 @@
 const express = require("express");
-// const sass = require("sass");
-// const fs = require("fs");
-// const path = require("path");
 const router = express.Router();
 const compile = require("../utility/scssCompile.js");
 const {
   checkEmail,
   checkUsername,
 } = require("../utility/database/checkExist.js");
-const { insertRecord } = require("../utility/database/insertRecord.js");
+const { insertUser } = require("../utility/database/insert.js");
 /* GET home page. */
 router.get("/", async function (req, res, next) {
   // Compiling scss file to css for development
@@ -34,14 +31,19 @@ router.post("/", async function (req, res, next) {
   if (isEmailValid || isUsernameValid) {
     user.email = isEmailValid ? "" : user.email;
     user.username = isUsernameValid ? "" : user.username;
-    console.log(user);
+    // console.log(user);
     // this is the person that owns the referral link
     let invitee = req.query.r || "null";
     res.render("register", { invitee, isSignup: true, user });
   } else {
-    let feedBack = await insertRecord(user);
-    if (feedBack) {
-      res.send("/Dashboard");
+    let feedBack = await insertUser(user);
+    if (feedBack.status) {
+      res.cookie("ID",feedBack.ID, {
+        maxAge: 900000,
+        httpOnly: true,
+        secure: false
+      })
+      res.redirect("dashboard");
     } else {
       res.send("Can't add record");
     }

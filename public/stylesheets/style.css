@@ -5,8 +5,9 @@
   color: gray;
   width: 100%;
   max-width: 400px;
-  margin: auto;
   border-radius: 10px;
+  margin: 2rem auto;
+  text-align: center;
 }
 .register > form {
   display: flex;
@@ -136,6 +137,13 @@ input[type=text] {
 input {
   outline-color: rgb(0, 255, 170);
   outline-width: 100px;
+  padding: 0.5rem;
+  background-color: rgb(14, 13, 13);
+  border: 1px solid white;
+  border-radius: 5px;
+  font-size: medium;
+  font-weight: 500;
+  color: white;
 }
 
 button.btn {
@@ -152,6 +160,43 @@ button.btn:active,
   transform: scale(0.99);
 }
 
+header.dashbaord > h2 {
+  text-transform: capitalize;
+  font-size: xx-large;
+}
+header.dashbaord > p {
+  font-size: 0.8rem;
+}
+
+.balance {
+  background-color: rgba(64, 128, 184, 0.5333333333);
+  color: #1259f0;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin: 1rem auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.balance > .icon {
+  background: red;
+  border-radius: 5px;
+  width: 25px;
+  height: 25px;
+}
+.balance > p {
+  text-transform: capitalize;
+}
+.balance > div {
+  width: 55px;
+  height: 55px;
+}
+
+.withdraw {
+  display: flex;
+  justify-content: center;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -160,15 +205,9 @@ button.btn:active,
 
 body {
   background-color: #0b0c1a;
-  font-family: "Open Sans", sans-serif;
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
-  padding: 1rem;
-  padding-top: 5rem;
-  padding-bottom: 4rem;
-  text-align: center;
   min-height: 100vh;
+  font-family: "Open Sans", sans-serif;
+  padding: 1rem;
   position: relative;
   color: rgba(255, 255, 255, 0.8);
 }
@@ -272,20 +311,6 @@ h2 {
   text-transform: uppercase;
   margin-top: 0.5rem;
   color: #fff;
-}
-
-.balance {
-  background-color: rgba(64, 128, 184, 0.5333333333);
-  color: #1259f0;
-  padding: 1rem;
-  margin: 1rem auto;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-.balance > div {
-  width: 55px;
-  height: 55px;
 }
 
 .claim {

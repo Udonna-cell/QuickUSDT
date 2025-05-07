@@ -1,6 +1,25 @@
-$bg: #0b0c1a;
-$vibrant-dark: #1259f0;
-$vibrant: #4080b888;
-$border-color: #282828;
-$heading: #fff;
-$txt: rgba(255, 255, 255, 0.8);
+// Base Colors
+$color-background: #121212;
+$color-surface: #1e1e1e;
+$color-text: #e0e0e0;
+$color-heading: #ffffff;
+
+// Accent & Buttons
+$color-primary: #4f46e5; // Indigo 600
+$color-primary-hover: #6366f1; // Indigo 500
+$color-secondary: #10b981; // Emerald 500
+$color-secondary-hover: #34d399; // Emerald 400
+$color-danger: #ef4444; // Red 500
+
+// Gradient for Special Button
+$color-gradient-start: #6366f1; // Indigo 500
+$color-gradient-end: #ec4899; // Pink 500
+
+// Additional Recommendations
+$color-muted: #9ca3af; // Gray 400
+$color-border: #2c2c2c;
+$color-card: #1a1a1a;
+$color-shadow: rgba(0, 0, 0, 0.5);
+
+// Example usage
+// background: linear-gradient(135deg, $color-gradient-start, $color-gradient-end);

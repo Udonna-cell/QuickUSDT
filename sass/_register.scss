@@ -1,3 +1,5 @@
+@use "global" as *;
+
 .register {
   background-color: rgb(7, 7, 7);
   padding: 2rem;
@@ -148,14 +150,19 @@ input {
   color: white;
 }
 button.btn {
-  background-color: white;
-  color: black;
+  background-color: $color-primary;
+  color: $color-text;
   padding: 0.6rem;
   border-radius: 5px;
   font-weight: bold;
   font-size: 0.9rem;
+  border: none;
 }
 button.btn:active,
 .eye:active {
   transform: scale(0.99);
+  background-color: $color-primary-hover;
+}
+.btn.form {
+  background: linear-gradient(135deg, $color-gradient-start, $color-gradient-end);
 }

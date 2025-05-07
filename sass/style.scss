@@ -10,10 +10,12 @@
   box-sizing: border-box;
 }
 
-
+p {
+  color: $color-text;
+}
 
 body {
-  background-color: $bg;
+  background-color: $color-background;
   min-height: 100vh;
   font-family: "Open Sans", sans-serif;
   // display: flex;
@@ -23,7 +25,7 @@ body {
   // padding-top: 5rem;
   // padding-bottom: 4rem;
   position: relative;
-  color: $txt;
+  color: $color-text;
 }
 
 .tag {
@@ -124,7 +126,7 @@ nav > menu ul > li:hover {
 h2 {
   text-transform: uppercase;
   margin-top: 0.5rem;
-  color: $heading;
+  color: $color-heading;
 }
 
 .claim {
@@ -143,7 +145,7 @@ h2 {
     max-width: 395px;
     height: 56px;
     border-radius: 1rem;
-    border: 1px solid $border-color;
+    border: 1px solid $color-border;
 
     & > input {
       outline: none;

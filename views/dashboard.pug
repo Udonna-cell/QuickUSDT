@@ -1,15 +1,20 @@
 extends layout
 
 block content 
-    header.dashbaord
-        h2 dashboard 
-        p welcome back, #{user.username}
-    .balance 
-        .icon 
-        p balance: 0.00001$
-    .withdraw 
-        input#amount(type="number", name="amount", placeholder="Min. 0.001")
-        //- action button
-        div 
-            button.btn.deposit deposit
-            button.btn.withdraw withdraw 
+    .dashboard
+        h1.heading Dashboard
+        p.subheading Welcome back, #{user.username}
+
+        .balance-box
+            span.balance-indicator
+            span.balance-text Balance: 0.00001$
+
+        input.amount-input(type="number", name="amount", placeholder="Min. 0.001")
+
+        .action-buttons
+            button.btn.deposit-btn
+                |  Deposit
+            button.btn.withdraw-btn
+                |  Withdraw
+
+

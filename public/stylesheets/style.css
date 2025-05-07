@@ -166,38 +166,97 @@ button.btn:active,
   background: linear-gradient(135deg, #6366f1, #ec4899);
 }
 
-header.dashbaord > h2 {
-  text-transform: capitalize;
-  font-size: xx-large;
+.dashboard {
+  background: #121212;
+  padding: 2rem;
+  font-family: "Inter", sans-serif;
+  color: #e0e0e0;
 }
-header.dashbaord > p {
-  font-size: 0.8rem;
+.dashboard .heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
 }
-
-.withdraw {
+.dashboard .subheading {
+  color: #9ca3af;
+  margin-bottom: 2rem;
+}
+.dashboard .balance-box {
+  background: #1a1a1a;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.dashboard .balance-box .balance-indicator {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #ef4444;
+  border-radius: 0.5rem;
+  margin-right: 0.75rem;
+}
+.dashboard .balance-box .balance-text {
+  font-size: 1.25rem;
+  color: #ffffff;
+}
+.dashboard .amount-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  background: #1e1e1e;
+  color: #e0e0e0;
+  border: 2px solid #2c2c2c;
+  border-radius: 0.75rem;
+  margin-bottom: 2rem;
+  outline: none;
+}
+.dashboard .amount-input::placeholder {
+  color: #9ca3af;
+}
+.dashboard .amount-input:focus {
+  border-color: #4f46e5;
+}
+.dashboard .action-buttons {
+  display: flex;
   gap: 1rem;
 }
-.withdraw > div {
+.dashboard .action-buttons .btn {
+  flex: 1;
   display: flex;
-  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
 }
-.withdraw > div > * {
-  flex-grow: 1;
-  text-transform: capitalize;
+.dashboard .action-buttons .btn .icon {
+  font-size: 1.2rem;
 }
-
-.btn.withdraw {
+.dashboard .action-buttons .deposit-btn {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjU2IDI1NiI+PHBhdGggZmlsbD0iY3VycmVudENvbG9yIiBkPSJNMTI4IDM1LjMxVjEyOGE4IDggMCAwIDEtMTYgMFYzNS4zMUw5My42NiA1My42NmE4IDggMCAwIDEtMTEuMzItMTEuMzJsMzItMzJhOCA4IDAgMCAxIDExLjMyIDBsMzIgMzJhOCA4IDAgMCAxLTExLjMyIDExLjMyWm02NCA4OC4zMVY5NmExNiAxNiAwIDAgMC0xNi0xNmgtMTZhOCA4IDAgMCAwIDAgMTZoMTZ2ODAuNGEyOCAyOCAwIDAgMC00NC4yNSAzMy42bC4yNC4zOGwyMi4yNiAzNGE4IDggMCAwIDAgMTMuMzktOC43NmwtMjIuMTMtMzMuNzlBMTIgMTIgMCAwIDEgMTY2LjQgMTkwYy4wNy4xMy4xNS4yNi4yMy4zOGwxMC42OCAxNi4zMWE4IDggMCAwIDAgMTQuNjktNC4zOFYxNDRhNzQuODQgNzQuODQgMCAwIDEgMjQgNTQuNjlWMjQwYTggOCAwIDAgMCAxNiAwdi00MS4zNWE5MC44OSA5MC44OSAwIDAgMC00MC03NS4wM004MCA4MEg2NGExNiAxNiAwIDAgMC0xNiAxNnYxMDRhOCA4IDAgMCAwIDE2IDBWOTZoMTZhOCA4IDAgMCAwIDAtMTYiLz48L3N2Zz4="), linear-gradient(135deg, #6366f1, #ec4899);
+  background-repeat: no-repeat, no-repeat;
+  background-position: 10% center, center;
+  background-size: 1em, cover;
+}
+.dashboard .action-buttons .deposit-btn:hover {
+  opacity: 0.9;
+}
+.dashboard .action-buttons .withdraw-btn {
+  background-color: #4f46e5;
   background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48ZyBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgY29sb3I9ImN1cnJlbnRDb2xvciI+PHBhdGggZD0ibTE4LjkzNSAxMy45NDVsLS42Ny0zLjY0OGMtLjI5LTEuNTc2LS40MzUtMi4zNjQtMS4wMDgtMi44M1MxNS44NiA3IDE0LjIxMyA3SDkuNzg3Yy0xLjY0NyAwLTIuNDcgMC0zLjA0NC40NjdjLS41NzMuNDY2LS43MTggMS4yNTQtMS4wMDggMi44M2wtLjY3IDMuNjQ4Yy0uNiAzLjI3MS0uOTAxIDQuOTA3LjAyNCA1Ljk4QzYuMDE0IDIxIDcuNzI0IDIxIDExLjE0MiAyMWgxLjcxNmMzLjQxOCAwIDUuMTI4IDAgNi4wNTMtMS4wNzRzLjYyNS0yLjcxLjAyNC01Ljk4Ii8+PHBhdGggZD0iTTEyIDEwLjVWMTdtLTIuNS0ybDIuNSAyLjVsMi41LTIuNW02LjUtNGExLjUgMS41IDAgMCAwIC40MTQtLjMwNUMyMiAxMC4wODkgMjIgOS4xMSAyMiA3LjE1MnMwLTIuOTM2LS41ODYtMy41NDRTMTkuODg2IDMgMTggM0g2Yy0xLjg4NiAwLTIuODI4IDAtMy40MTQuNjA4UzIgNS4xOTUgMiA3LjE1MnMwIDIuOTM2LjU4NiAzLjU0M3EuMTguMTg4LjQxNC4zMDUiLz48L2c+PC9zdmc+");
   background-repeat: no-repeat;
   background-position: 10% center;
 }
-
-.btn.deposit {
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjU2IDI1NiI+PHBhdGggZmlsbD0iY3VycmVudENvbG9yIiBkPSJNMTI4IDM1LjMxVjEyOGE4IDggMCAwIDEtMTYgMFYzNS4zMUw5My42NiA1My42NmE4IDggMCAwIDEtMTEuMzItMTEuMzJsMzItMzJhOCA4IDAgMCAxIDExLjMyIDBsMzIgMzJhOCA4IDAgMCAxLTExLjMyIDExLjMyWm02NCA4OC4zMVY5NmExNiAxNiAwIDAgMC0xNi0xNmgtMTZhOCA4IDAgMCAwIDAgMTZoMTZ2ODAuNGEyOCAyOCAwIDAgMC00NC4yNSAzMy42bC4yNC4zOGwyMi4yNiAzNGE4IDggMCAwIDAgMTMuMzktOC43NmwtMjIuMTMtMzMuNzlBMTIgMTIgMCAwIDEgMTY2LjQgMTkwYy4wNy4xMy4xNS4yNi4yMy4zOGwxMC42OCAxNi4zMWE4IDggMCAwIDAgMTQuNjktNC4zOFYxNDRhNzQuODQgNzQuODQgMCAwIDEgMjQgNTQuNjlWMjQwYTggOCAwIDAgMCAxNiAwdi00MS4zNWE5MC44OSA5MC44OSAwIDAgMC00MC03NS4wM004MCA4MEg2NGExNiAxNiAwIDAgMC0xNiAxNnYxMDRhOCA4IDAgMCAwIDE2IDBWOTZoMTZhOCA4IDAgMCAwIDAtMTYiLz48L3N2Zz4=");
-  background-repeat: no-repeat;
-  background-position: 10% center;
+.dashboard .action-buttons .withdraw-btn:hover {
+  background: #6366f1;
 }
 
 .balance {

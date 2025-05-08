@@ -155,11 +155,13 @@ button.btn {
   font-size: 0.9rem;
   border: none;
 }
+button.btn:active {
+  background-color: #6366f1;
+}
 
 button.btn:active,
 .eye:active {
   transform: scale(0.99);
-  background-color: #6366f1;
 }
 
 .btn.form {
@@ -255,8 +257,38 @@ button.btn:active,
   background-repeat: no-repeat;
   background-position: 10% center;
 }
-.dashboard .action-buttons .withdraw-btn:hover {
-  background: #6366f1;
+section.activities {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+section.activities > .card {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(465deg, #4f46e5 5%, rgba(0, 0, 0, 0.5));
+  padding: 0.7rem;
+  border-radius: 5px;
+}
+section.activities > .card > article {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+section.activities > .card > article > h3 {
+  text-transform: capitalize;
+}
+section.activities > .card > article > P {
+  opacity: 0.8;
+}
+section.activities > .card > article > P::first-letter {
+  text-transform: capitalize;
+}
+section.activities > .card > .btn {
+  flex-basis: 170px;
+  text-transform: capitalize;
+  background: #1e1e1e;
 }
 
 .balance {

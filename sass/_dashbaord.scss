@@ -102,8 +102,44 @@
       background-position: 10% center;
 
       &:hover {
-        background: $color-primary-hover;
+        // background: $color-primary-hover;
       }
+    }
+  }
+}
+
+section.activities {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  & > .card {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(465deg, $color-primary 5%, $color-shadow);
+    padding: 0.7rem;
+    border-radius: 5px;
+
+    & > article {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      & > h3 {
+        text-transform: capitalize;
+      }
+      & > P {
+        opacity: 0.8;
+        &::first-letter {
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    & > .btn {
+      flex-basis: 170px;
+      text-transform: capitalize;
+      background: $color-surface;
     }
   }
 }

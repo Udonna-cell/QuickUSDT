@@ -157,11 +157,14 @@ button.btn {
   font-weight: bold;
   font-size: 0.9rem;
   border: none;
+  
+  &:active {
+    background-color: $color-primary-hover;
+  }
 }
 button.btn:active,
 .eye:active {
   transform: scale(0.99);
-  background-color: $color-primary-hover;
 }
 .btn.form {
   background: linear-gradient(135deg, $color-gradient-start, $color-gradient-end);

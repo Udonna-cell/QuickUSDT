@@ -143,3 +143,72 @@ section.activities {
     }
   }
 }
+
+section.layout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: $color-background;
+  // pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > section.event {
+    background-color: $color-surface;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+
+    & > h1 {
+      font-size: xx-large;
+      text-transform: capitalize;
+    }
+    & > p {
+      color: $color-text;
+    }
+    & > .container {
+      margin: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      & > .illustration {
+        background: linear-gradient(
+          165deg,
+          $color-gradient-start,
+          $color-gradient-end
+        );
+        width: 65px;
+        height: 65px;
+        border-radius: 5px;
+      }
+    }
+    & > .flex {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      & > .progress {
+        display: flex;
+        gap: 0.4rem;
+        & > .bar {
+          width: 15px;
+          height: 15px;
+          background-color: rgb(16, 16, 100);
+          border-radius: 50%;
+        }
+        & > .bar.fill {
+          background-color: $color-primary;
+        }
+      }
+      & > button {
+        text-transform: capitalize;
+        padding: 0.5rem 1.5rem;
+      }
+    }
+  }
+  &.hide {
+    display: none;
+  }
+}

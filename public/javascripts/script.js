@@ -2,6 +2,8 @@ let btn = document.querySelector("button.btn.btn-primary");
 let address = document.querySelector("input[type=email]");
 let spin = document.querySelector(".load");
 let urlBase = window.location.origin
+// let activities layout 
+const layout = document.querySelector("section.layout")
 
 
 
@@ -121,3 +123,13 @@ btn.addEventListener("click", (e) => {
     });
   }
 });
+
+function active() {
+  layout.classList.remove("hide")
+}
+function dailyBonus() {
+  closeLayout()
+}
+function closeLayout() {
+  layout.classList.add("hide")
+}

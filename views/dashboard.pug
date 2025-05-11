@@ -24,5 +24,12 @@ block content
                 article 
                     h3 crypto faucet 
                     p get free cryptocurrency from a faucet 
-                button.btn get started
-
+                button.btn(onclick="active()") get started
+    
+    //- This is the event layout
+    section.layout.hide 
+        - var title = "daily bonus"
+        - var detail = "claim a bonus evry day"
+        - var amount = "0.002 BTC"
+        - var streak = "3 / 7"
+        include ./includes/event.pug

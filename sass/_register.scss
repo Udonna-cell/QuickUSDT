@@ -157,8 +157,10 @@ button.btn {
   font-weight: bold;
   font-size: 0.9rem;
   border: none;
+  cursor: pointer;
   
   &:active {
+    transform: scale(0.78);
     background-color: $color-primary-hover;
   }
 }

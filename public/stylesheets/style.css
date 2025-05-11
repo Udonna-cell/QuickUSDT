@@ -154,8 +154,10 @@ button.btn {
   font-weight: bold;
   font-size: 0.9rem;
   border: none;
+  cursor: pointer;
 }
 button.btn:active {
+  transform: scale(0.78);
   background-color: #6366f1;
 }
 
@@ -289,6 +291,68 @@ section.activities > .card > .btn {
   flex-basis: 170px;
   text-transform: capitalize;
   background: #1e1e1e;
+}
+
+section.layout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: #121212;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section.layout > section.event {
+  background-color: #1e1e1e;
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+}
+section.layout > section.event > h1 {
+  font-size: xx-large;
+  text-transform: capitalize;
+}
+section.layout > section.event > p {
+  color: #e0e0e0;
+}
+section.layout > section.event > .container {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+section.layout > section.event > .container > .illustration {
+  background: linear-gradient(165deg, #6366f1, #ec4899);
+  width: 65px;
+  height: 65px;
+  border-radius: 5px;
+}
+section.layout > section.event > .flex {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+section.layout > section.event > .flex > .progress {
+  display: flex;
+  gap: 0.4rem;
+}
+section.layout > section.event > .flex > .progress > .bar {
+  width: 15px;
+  height: 15px;
+  background-color: rgb(16, 16, 100);
+  border-radius: 50%;
+}
+section.layout > section.event > .flex > .progress > .bar.fill {
+  background-color: #4f46e5;
+}
+section.layout > section.event > .flex > button {
+  text-transform: capitalize;
+  padding: 0.5rem 1.5rem;
+}
+section.layout.hide {
+  display: none;
 }
 
 .balance {

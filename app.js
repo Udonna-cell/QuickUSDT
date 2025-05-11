@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 const register = require("./routes/register")
 const signIn = require("./routes/signin")
 const dashboard = require("./routes/dashboard")
+const dailyBonus = require("./routes/daily-bonus")
 
 // creating connection to the database
 /* 
@@ -37,6 +38,7 @@ app.use('/payment', paymentRouter);
 app.use('/register', register);
 app.use('/signin', signIn);
 app.use('/dashboard', dashboard);
+// app.use('/daily-bonus', dailyBonus);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -38,7 +38,7 @@ app.use('/payment', paymentRouter);
 app.use('/register', register);
 app.use('/signin', signIn);
 app.use('/dashboard', dashboard);
-// app.use('/daily-bonus', dailyBonus);
+app.use('/daily-bonus', dailyBonus);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

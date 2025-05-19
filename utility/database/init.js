@@ -28,10 +28,27 @@ async function Init() {
     console.log(error.message);
     createUserTable()
   }
+  // Testing bonus table if exist
+  try {
+    let results = await db.query("SELECT * FROM `bonus`")
+  } catch (error) {
+    console.log(error.message);
+    createBonusTable()
+  }
 }
 
 async function createUserTable() {
   let query = fs.readFileSync(path.resolve(__dirname,"./query/createTable.sql"),{encoding: "utf8"})
+  let db = new Database()
+  try {
+    let results =  await db.query(query)
+    console.log(results.success);
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function createBonusTable() {
+  let query = fs.readFileSync(path.resolve(__dirname,"./query/bonus.sql"),{encoding: "utf8"})
   let db = new Database()
   try {
     let results =  await db.query(query)

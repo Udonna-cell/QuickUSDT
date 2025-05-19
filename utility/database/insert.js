@@ -11,11 +11,27 @@ async function insertUser({ firstName, lastName, username, email, password }) {
     );
     return {
       status: result.success,
-      ID
+      ID,
+    };
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function insertBonus({ ID, reward, date }) {
+  let db = new Database();
+  // let ID = await generateUserId(8);
+  try {
+    let result = await db.query(
+      "INSERT INTO `bonus`(`userID`, `reward`, `date`) VALUES (?,?,?)",
+      [ID, reward, date]
+    );
+    return {
+      status: result.success,
+      ID,
     };
   } catch (error) {
     console.log(error);
   }
 }
 
-module.exports = { insertUser };
+module.exports = { insertUser, insertBonus };

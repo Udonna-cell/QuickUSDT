@@ -2,8 +2,15 @@ const express = require("express");
 const Database = require("../utility/database");
 const compile = require("../utility/scssCompile");
 const router = express.Router();
+// const { initBonus } = require("../utility/cookies/bonus")
 
 router.get("/", async (req, res) => {
+
+  // check if bonus cookie is set
+  let isBonusSet = req.cookies.bonus
+  isBonusSet = (isBonusSet)? true : false;
+  
+
   compile();
   let DB = new Database();
   let ID = req.cookies.ID;
@@ -19,7 +26,7 @@ router.get("/", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-  res.render("dashboard", { user });
+  res.render("dashboard", { user, isBonusSet });
 });
 
 module.exports = router;

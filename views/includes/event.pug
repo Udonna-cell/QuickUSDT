@@ -6,12 +6,9 @@ section.event
         h2= amount
         p= streak 
     .flex 
-        .progress 
-            .bar.fill 
-            .bar.fill 
-            .bar.fill
-            .bar 
-            .bar 
-            .bar 
-            .bar 
+        .progress
+            - for (let i = 0; i < claimed; i++)
+                .bar.fill 
+            - for (let i = 0; i < left; i++) 
+                .bar 
         button.btn(onclick="dailyBonus()") claim

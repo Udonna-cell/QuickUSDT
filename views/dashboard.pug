@@ -27,9 +27,11 @@ block content
                 button.btn(onclick="active()") get started
     
     //- This is the event layout
-    section.layout.hide 
+    section.layout(class={ hide: isBonusSet.status })
         - var title = "daily bonus"
-        - var detail = "claim a bonus evry day"
-        - var amount = "0.002 BTC"
-        - var streak = "3 / 7"
+        - var detail = "claim a bonus every day"
+        - var amount = isBonusSet.reward + " USDT"
+        - var streak = isBonusSet.day + " / 7"
+        - var claimed = isBonusSet.day
+        - var left = 7 - isBonusSet.day
         include ./includes/event.pug

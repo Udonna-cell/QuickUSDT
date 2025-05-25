@@ -1,22 +1,29 @@
 const express = require("express");
 const Database = require("../utility/database");
 const compile = require("../utility/scssCompile");
+const { isBonusClaimed, isUserActive } = require("../utility/cookies/bonus");
 const router = express.Router();
 // const { initBonus } = require("../utility/cookies/bonus")
 
 router.get("/", async (req, res) => {
-
-  // check if bonus cookie is set
-  let isBonusSet = req.cookies.bonus
-  isBonusSet = (isBonusSet)? true : false;
-  
-
-  compile();
+  // global
   let DB = new Database();
   let ID = req.cookies.ID;
   let user;
+
+  // check if bonus cookie is set
+  let isBonusSet = await isBonusClaimed(ID);
+  console.log(isBonusSet, " >>>> received <<<<<<");
+  // isBonusSet = isBonusSet ? true : false;
+  // let totalBonusClaimed = [];
+  // let active = await isUserActive(ID)
+  // console.log(active , ">>>> active user <<<<<");
+
+  compile();
+
   try {
     user = await DB.query("SELECT * FROM users WHERE ID = ?", [ID]);
+
     if (user.results.length == 0) {
       res.redirect("/signin");
     } else {

@@ -5,11 +5,12 @@ let urlBase = window.location.origin;
 // let activities layout
 const layout = document.querySelector("section.layout");
 
-window.onload = function () {
-  if (getCookie("bonus") != "true") {
-    active();
-  }
-};
+// window.onload = function () {
+//   alert(getCookie("bonus"))
+//   if (getCookie("bonus") != "true") {
+//     active();
+//   }
+// };
 
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();

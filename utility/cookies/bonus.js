@@ -174,7 +174,7 @@ async function setNextClaim({ userID, reward, count, streak, date }, now) {
   let multiplier = 1;
   // if on  track is true increase count plus 1
   if (onTrack) {
-    nextClaim.count += 1;
+    nextClaim.count = nextClaim.count + 1;
     // increase streak if is greater than streak
     if (nextClaim.count > nextClaim.streak) {
       nextClaim.streak = nextClaim.count;

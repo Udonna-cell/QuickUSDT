@@ -176,7 +176,7 @@ async function setNextClaim({ userID, reward, count, streak, date }, now) {
     nextClaim.count = 1;
   }
   multiplier = nextClaim.count % 7 == 0 ? 7 : nextClaim.count % 7;
-  nextClaim.reward = nextClaim.reward * multiplier;
+  nextClaim.reward = reward + (nextClaim.reward * multiplier);
   nextClaim.day = multiplier;
   // console.log(now, "current time");
   nextClaim.date = now;

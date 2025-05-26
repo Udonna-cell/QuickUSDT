@@ -36,13 +36,20 @@ async function claimBonus({ ID }) {
         "UPDATE `bonus` SET `reward`= ?,`count`= ?,`streak`= ?,`date`= ? WHERE `userID`= ?",
         [reward, count, streak, date, userID]
       );
+      result = await DB.query("SELECT * FROM `bonus` WHERE `userID` = ?", [
+        userID,
+      ]);
+      result = JSON.parse(JSON.stringify(result.results));
+      result = result[0]
       return {
+        result,
         status: true,
         ID,
       };
     } catch (error) {
       console.log(error);
       return {
+        result,
         status: false,
         ID,
       };

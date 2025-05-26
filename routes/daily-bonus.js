@@ -24,6 +24,7 @@ router.get("/", async function (req, res, next) {
 
   let claim = await claimBonus(info)
   console.log(claim, "<< claim <<<");
+  res.json(claim);
 
   // let g = await insertBonus(info);
   // if (g.status) {

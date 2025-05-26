@@ -2,6 +2,7 @@ let btn = document.querySelector("button.btn.btn-primary");
 let address = document.querySelector("input[type=email]");
 let spin = document.querySelector(".load");
 let urlBase = window.location.origin;
+let balance =  document.querySelector("span.balance-text")
 // let activities layout
 const layout = document.querySelector("section.layout");
 
@@ -135,6 +136,7 @@ function dailyBonus() {
     .then((data) => data.json())
     .then((d) => {
       console.log(d);
+      balance.innerHTML = "Balance: " + d.result.reward + "$"
     });
   closeLayout();
 }

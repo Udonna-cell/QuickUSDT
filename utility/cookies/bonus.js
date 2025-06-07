@@ -3,7 +3,7 @@ require("dotenv").config();
 const { sassTrue } = require("sass");
 const Database = require("../database");
 
-async function setBonus({ userID, reward, count, streak, date}) {
+async function setBonus({ userID, reward, count, streak, date }) {
   let DB = new Database();
   try {
     let result = await DB.query(
@@ -40,7 +40,7 @@ async function claimBonus({ ID }) {
         userID,
       ]);
       result = JSON.parse(JSON.stringify(result.results));
-      result = result[0]
+      result = result[0];
       return {
         result,
         status: true,
@@ -55,7 +55,7 @@ async function claimBonus({ ID }) {
       };
     }
   } else {
-    let isUserSet = await setBonus({ userID, reward, count, streak, date});
+    let isUserSet = await setBonus({ userID, reward, count, streak, date });
     // console.log(isUserSet);
     return isUserSet;
   }
@@ -183,15 +183,30 @@ async function setNextClaim({ userID, reward, count, streak, date }, now) {
     nextClaim.count = 1;
   }
   multiplier = nextClaim.count % 7 == 0 ? 7 : nextClaim.count % 7;
-  nextClaim.reward = reward + (nextClaim.reward * multiplier);
+  nextClaim.reward = reward + nextClaim.reward * multiplier;
   nextClaim.day = multiplier;
   // console.log(now, "current time");
   nextClaim.date = now;
   return nextClaim;
+}
+
+async function getBonus(ID) {
+  const DB = new Database();
+  try {
+    let { results } = await DB.query(
+      "SELECT reward FROM `bonus` WHERE userID = ?",
+      [ID]
+    );
+    return (JSON.parse(JSON.stringify(results)))[0].reward;
+  } catch (error) {
+    console.log("failed to process data");
+    return 0;
+  }
 }
 module.exports = {
   setBonus,
   isBonusClaimed,
   isUserActive,
   claimBonus,
+  getBonus,
 };

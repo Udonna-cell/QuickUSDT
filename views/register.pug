@@ -60,7 +60,7 @@ block content
                 //- password field
                 .password  
                     label(for="password") password
-                    input#password(type="password" name="password" placeholder="password", value= user ? user.password : "", required)
+                    input#password(type="password" name="password" placeholder="password", value= user ? user.password : "", required autocomplete)
                     .eye(onclick="hideShow()")
 
                 button.btn.form(type="submit") Login

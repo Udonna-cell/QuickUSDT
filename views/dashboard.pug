@@ -18,13 +18,7 @@ block content
                 |  Withdraw
     section.activities 
         each i in [1, 1, 2]
-            .card 
-                //- .logo 
-                    img(src="", alt="alt")
-                article 
-                    h3 crypto faucet 
-                    p get free cryptocurrency from a faucet 
-                button.btn(onclick="active()") get started
+            include ./components/event.pug          
     
     //- This is the event layout
     section.layout(class={ hide: isBonusSet.status })

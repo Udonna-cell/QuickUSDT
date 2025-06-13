@@ -33,5 +33,21 @@ async function insertBonus({ ID, reward, date }) {
     console.log(error);
   }
 }
+async function insertInvite(username, userID) {
+  let db = new Database();
+  // let ID = await generateUserId(8);
+  try {
+    let result = await db.query(
+      "INSERT INTO `invite`(`username`, `invitee`) VALUES (?,?)",
+      [username, userID]
+    );
+    return {
+      status: result.success,
+      ID,
+    };
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-module.exports = { insertUser, insertBonus };
+module.exports = { insertUser, insertBonus, insertInvite };

@@ -2,7 +2,7 @@ export const LOCAL = {
   host: "localhost",
   user: "root",
   password: "",
-  database: "users",
+  database: "quickusdt",
 };
 export const GLOBAL = {
   host: process.env.HOST,

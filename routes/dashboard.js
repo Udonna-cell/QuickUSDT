@@ -2,6 +2,7 @@ const express = require("express");
 const Database = require("../utility/database");
 const compile = require("../utility/scssCompile");
 const { isBonusClaimed, isUserActive, getBonus } = require("../utility/cookies/bonus");
+const { getEvents } = require("../utility/events/getEvents");
 const router = express.Router();
 // const { initBonus } = require("../utility/cookies/bonus")
 
@@ -9,12 +10,14 @@ router.get("/", async (req, res) => {
   // global
   let DB = new Database();
   let ID = req.cookies.ID;
+  let events = await getEvents()
+  let isEventEmpty = events.length == 0? true : false;
   let user;
 
   // check if bonus cookie is set
   let isBonusSet = await isBonusClaimed(ID);
   let userBonus = await getBonus(ID)
-  console.log(userBonus, " >>>> received <<<<<<");
+  console.log(events, " >>>> received <<<<<<");
   // isBonusSet = isBonusSet ? true : false;
   // let totalBonusClaimed = [];
   // let active = await isUserActive(ID)
@@ -34,7 +37,7 @@ router.get("/", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-  res.render("dashboard", { user, isBonusSet, userBonus });
+  res.render("dashboard", { user, isBonusSet, userBonus, events, isEventEmpty });
 });
 
 module.exports = router;

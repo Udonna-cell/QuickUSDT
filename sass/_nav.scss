@@ -1,0 +1,23 @@
+@use "global" as *;
+nav {
+    width: 90%;
+    background-color: $color-card;
+    box-shadow: 0px 2px 20px 0px $color-muted;
+    border-radius: 10px;
+    position: fixed;
+    // opacity: 0.2;
+    display: flex;
+    bottom: 10px;
+    z-index: 2;
+    padding: 1rem;
+    gap: 1rem;
+    justify-content: space-between;
+    text-transform: capitalize;
+
+    & > .icon {
+        cursor: pointer;
+        &:hover {
+            color: rgb(136, 25, 247);
+        }
+    }
+}

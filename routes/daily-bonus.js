@@ -19,29 +19,13 @@ router.get("/", async function (req, res, next) {
 
   let info = {
     ID: req.cookies.ID,
-    date: now
+    current: now
   };
 
+  console.log("Claim start");
   let claim = await claimBonus(info)
   console.log(claim, "<< claim <<<");
   res.json(claim);
-
-  // let g = await insertBonus(info);
-  // if (g.status) {
-  //   res.cookie("bonus", true, {
-  //     maxAge: 900000,
-  //     httpOnly: true,
-  //     secure: false,
-  //   });
-  //   res.json({ done: true });
-  // } else {
-  //   res.cookie("bonus", true, {
-  //     maxAge: 900000,
-  //     httpOnly: true,
-  //     secure: false,
-  //   });
-  //   res.json({ done: false });
-  // }
 });
 
 module.exports = router;

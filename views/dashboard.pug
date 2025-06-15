@@ -1,6 +1,7 @@
 extends layout
 
 block content 
+    //- include ./components/nav/nav.pug
     .dashboard
         h1.heading Dashboard
         p.subheading Welcome back, #{user.username}
@@ -9,17 +10,22 @@ block content
             span.balance-indicator
             span.balance-text Balance: #{userBonus}$
 
-        input.amount-input(type="number", name="amount", placeholder="Min. 0.001")
+        input.amount-input(type="number" name="amount" placeholder="Min. 0.001")
 
         .action-buttons
             button.btn.deposit-btn
                 |  Deposit
             button.btn.withdraw-btn
                 |  Withdraw
-    section.activities 
-        each i in [1, 1, 2]
-            include ./components/event.pug          
-    
+    h4 Events available (#{events.length})
+    section.activities
+
+        if isEventEmpty
+            h2 No Events
+        else 
+            each event in events
+                include ./components/event.pug          
+
     //- This is the event layout
     section.layout(class={ hide: isBonusSet.status })
         - var title = "daily bonus"

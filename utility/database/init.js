@@ -1,7 +1,7 @@
 const Database = require("./index.js");
 const { LOCAL, GLOBAL } = require("./key.js");
-const fs = require("fs")
-const path = require("path")
+const fs = require("fs");
+const path = require("path");
 
 // The Init function will config a connection to the database
 async function Init() {
@@ -23,75 +23,103 @@ async function Init() {
 
   // Testing for existing tables
   try {
-    let results = await db.query("SELECT * FROM `users`")
+    let results = await db.query("SELECT * FROM `users`");
   } catch (error) {
     console.log(error.message);
-    createUserTable()
+    createUserTable();
   }
-  
+
   // Testing bonus table if exist
   try {
-    let results = await db.query("SELECT * FROM `bonus`")
+    let results = await db.query("SELECT * FROM `bonus`");
   } catch (error) {
     console.log(error.message);
-    createBonusTable()
+    createBonusTable();
   }
 
-  // Testing events table 
+  // Testing events table
   try {
-    await db.query("SELECT * FROM `events`")
+    await db.query("SELECT * FROM `events`");
   } catch (error) {
-    createEventsTable()
+    createEventsTable();
   }
 
-  // Testing invite table 
+  // Testing invite table
   try {
-    await db.query("SELECT * FROM `invite`")
+    await db.query("SELECT * FROM `invite`");
   } catch (error) {
-    createInviteTable()
+    createInviteTable();
+  }
+
+  // Testing transactions table
+  try {
+    await db.query("SELECT * FROM `transactions`");
+  } catch (error) {
+    createTransactionsTable()
   }
 }
 
 async function createUserTable() {
-  let query = fs.readFileSync(path.resolve(__dirname,"./query/createTable.sql"),{encoding: "utf8"})
-  let db = new Database()
+  let query = fs.readFileSync(
+    path.resolve(__dirname, "./query/createTable.sql"),
+    { encoding: "utf8" }
+  );
+  let db = new Database();
   try {
-    let results =  await db.query(query)
+    let results = await db.query(query);
     console.log(results.success);
   } catch (error) {
     console.log(error);
   }
 }
 async function createBonusTable() {
-  let query = fs.readFileSync(path.resolve(__dirname,"./query/bonus.sql"),{encoding: "utf8"})
-  let db = new Database()
+  let query = fs.readFileSync(path.resolve(__dirname, "./query/bonus.sql"), {
+    encoding: "utf8",
+  });
+  let db = new Database();
   try {
-    let results =  await db.query(query)
+    let results = await db.query(query);
     console.log(results.success);
   } catch (error) {
     console.log(error);
   }
 }
 async function createEventsTable() {
-  let query = fs.readFileSync(path.resolve(__dirname,"./query/events.sql"),{encoding: "utf8"})
-  let db = new Database()
+  let query = fs.readFileSync(path.resolve(__dirname, "./query/events.sql"), {
+    encoding: "utf8",
+  });
+  let db = new Database();
   try {
-    let results =  await db.query(query)
+    let results = await db.query(query);
     console.log(results.success);
   } catch (error) {
     console.log(error);
   }
 }
 async function createInviteTable() {
-  let query = fs.readFileSync(path.resolve(__dirname,"./query/invite.sql"),{encoding: "utf8"})
-  let db = new Database()
+  let query = fs.readFileSync(path.resolve(__dirname, "./query/invite.sql"), {
+    encoding: "utf8",
+  });
+  let db = new Database();
   try {
-    let results =  await db.query(query)
+    let results = await db.query(query);
+    console.log(results.success);
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function createTransactionsTable() {
+  let query = fs.readFileSync(
+    path.resolve(__dirname, "./query/transactions.sql"),
+    { encoding: "utf8" }
+  );
+  let db = new Database();
+  try {
+    let results = await db.query(query);
     console.log(results.success);
   } catch (error) {
     console.log(error);
   }
 }
 
-
-module.exports = Init
+module.exports = Init;

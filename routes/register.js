@@ -53,7 +53,7 @@ router.post("/", async function (req, res, next) {
           maxAge: 900000,
           httpOnly: true,
           secure: false,
-        });
+        }); 
         res.redirect("dashboard");
       } else {
         res.send("Can't add record");

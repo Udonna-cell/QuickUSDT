@@ -112,6 +112,10 @@ section.activities {
   display: flex;
   gap: 1rem;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // background-color: red;
+  margin: 3rem 0;
   & > .card {
     display: flex;
     gap: 1.5rem;

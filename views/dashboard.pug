@@ -8,7 +8,7 @@ block content
 
         .balance-box
             span.balance-indicator
-            span.balance-text Balance: #{userBonus}$
+            span.balance-text Balance: #{balance}$
 
         input.amount-input(type="number" name="amount" placeholder="Min. 0.001")
 
@@ -27,11 +27,11 @@ block content
                 include ./components/event.pug          
 
     //- This is the event layout
-    section.layout(class={ hide: isBonusSet.status })
+    section.layout(class={ hide: isBonusSet })
         - var title = "daily bonus"
         - var detail = "claim a bonus every day"
-        - var amount = isBonusSet.reward + " USDT"
-        - var streak = isBonusSet.day + " / 7"
-        - var claimed = isBonusSet.day
-        - var left = 7 - isBonusSet.day
+        - var amount = userBonus.reward + " USDT"
+        - var streak = userBonus.count + " / 7"
+        - var claimed = userBonus.count
+        - var left = 7 - userBonus.count
         include ./includes/event.pug

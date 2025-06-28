@@ -6,26 +6,26 @@ const router = express.Router();
 const compile = require("../utility/scssCompile.js");
 const { insertBonus } = require("../utility/database/insert.js");
 const { claimBonus } = require("../utility/cookies/bonus.js");
+const { Balance } = require("../utility/transaction.js");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
   // Compiling scss file to css for development
   compile();
-  let now = new Date();
-  let M = (now.getMonth() + 1 < 10)? "0" + (now.getMonth() + 1) : now.getMonth() + 1
-
-  let D = (now.getDate() < 10)? "0" + (now.getDate()) : now.getDate()
-  now = `${now.getFullYear()}-${M}-${D}`;
+  
 
   let info = {
     ID: req.cookies.ID,
-    current: now
+    amount: 0.008,
+    type: "credit",
+    flag: "Bonus",
   };
 
   console.log("Claim start");
-  let claim = await claimBonus(info)
+  let claim = await claimBonus(info);
+  let balance = await Balance(info.ID)
   console.log(claim, "<< claim <<<");
-  res.json(claim);
+  res.json({status: claim.status, balance, claim});
 });
 
 module.exports = router;

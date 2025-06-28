@@ -1,8 +1,14 @@
 const express = require("express");
 const Database = require("../utility/database");
 const compile = require("../utility/scssCompile");
-const { isBonusClaimed, isUserActive, getBonus } = require("../utility/cookies/bonus");
+const {
+  isBonusClaimed,
+  isUserActive,
+  setNextClaim,
+  getBonus,
+} = require("../utility/cookies/bonus");
 const { getEvents } = require("../utility/events/getEvents");
+const { Balance } = require("../utility/transaction");
 const router = express.Router();
 // const { initBonus } = require("../utility/cookies/bonus")
 
@@ -10,34 +16,55 @@ router.get("/", async (req, res) => {
   // global
   let DB = new Database();
   let ID = req.cookies.ID;
-  let events = await getEvents()
-  let isEventEmpty = events.length == 0? true : false;
+  let events = await getEvents();
+  let isEventEmpty = events.length == 0 ? true : false;
   let user;
+  
 
-  // check if bonus cookie is set
-  let isBonusSet = await isBonusClaimed(ID);
-  let userBonus = await getBonus(ID)
-  console.log(events, " >>>> received <<<<<<");
-  // isBonusSet = isBonusSet ? true : false;
-  // let totalBonusClaimed = [];
-  // let active = await isUserActive(ID)
-  // console.log(active , ">>>> active user <<<<<");
+  console.log("user ID", !ID);
+  if (!ID) {
+    res.redirect("/signin");
+  } else {
+    let balance = await Balance(ID)
+    // check if bonus cookie is set
+    let isBonusSet = await isBonusClaimed(ID);
+    let userBonus = await getBonus(ID);
+    console.log("user bonus info",isBonusSet);
+    const isActive = userBonus.length > 0;
+    userBonus = await setNextClaim(userBonus[0], isActive, ID);
+    console.log(events, " >>>> received Event <<<<<<");
+    // isBonusSet = isBonusSet ? true : false;
+    // let totalBonusClaimed = [];
+    // let active = await isUserActive(ID)
+    // console.log(active , ">>>> active user <<<<<");
 
-  compile();
+    compile();
 
-  try {
-    user = await DB.query("SELECT * FROM users WHERE ID = ?", [ID]);
+    try {
+      user = await DB.query("SELECT * FROM users WHERE ID = ?", [ID]);
 
-    if (user.results.length == 0) {
-      res.redirect("/signin");
-    } else {
-      user = JSON.parse(JSON.stringify(user.results));
-      user = user[0];
+      if (user.results.length == 0) {
+        res.redirect("/signin");
+      } else {
+        user = JSON.parse(JSON.stringify(user.results));
+        user = user[0];
+      }
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
+
+    console.log("hellllllloooooooo!!!!!!!!!!!!!!!!");
+    console.log("is bonus claim today", isBonusSet);
+    console.log(userBonus);
+    res.render("dashboard", {
+      user,
+      isBonusSet,
+      userBonus,
+      events,
+      isEventEmpty,
+      balance
+    });
   }
-  res.render("dashboard", { user, isBonusSet, userBonus, events, isEventEmpty });
 });
 
 module.exports = router;

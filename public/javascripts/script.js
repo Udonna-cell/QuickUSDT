@@ -136,7 +136,7 @@ function dailyBonus() {
     .then((data) => data.json())
     .then((d) => {
       console.log(d);
-      balance.innerHTML = "Balance: " + d.result.reward + "$"
+      balance.innerHTML = "Balance: " + d.balance + "$"
     });
   closeLayout();
 }

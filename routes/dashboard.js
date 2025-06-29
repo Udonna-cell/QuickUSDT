@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
   let user;
   
 
-  console.log("user ID", !ID);
+  // console.log("user ID",ID);
   if (!ID) {
     res.redirect("/signin");
   } else {
@@ -29,10 +29,10 @@ router.get("/", async (req, res) => {
     // check if bonus cookie is set
     let isBonusSet = await isBonusClaimed(ID);
     let userBonus = await getBonus(ID);
-    console.log("user bonus info",isBonusSet);
-    const isActive = userBonus.length > 0;
-    userBonus = await setNextClaim(userBonus[0], isActive, ID);
-    console.log(events, " >>>> received Event <<<<<<");
+    const isUserInactive = userBonus.length == 0;
+    // console.log("user bonus record",userBonus);
+    userBonus = await setNextClaim(userBonus[0], isUserInactive, ID);
+    // console.log(events, " >>>> received Event <<<<<<");
     // isBonusSet = isBonusSet ? true : false;
     // let totalBonusClaimed = [];
     // let active = await isUserActive(ID)
@@ -50,12 +50,12 @@ router.get("/", async (req, res) => {
         user = user[0];
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
 
-    console.log("hellllllloooooooo!!!!!!!!!!!!!!!!");
-    console.log("is bonus claim today", isBonusSet);
-    console.log(userBonus);
+    // console.log("hellllllloooooooo!!!!!!!!!!!!!!!!");
+    // console.log("is bonus claim today", isBonusSet);
+    // console.log(userBonus);
     res.render("dashboard", {
       user,
       isBonusSet,

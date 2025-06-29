@@ -15,7 +15,7 @@ async function setBonus({ userID, reward, count, streak, date }) {
     );
     return { status: result.success, ID: userID };
   } catch (error) {
-    console.error("Error in setBonus:", error);
+    // console.error("Error in setBonus:", error);
     return { status: false, ID: userID };
   }
 }
@@ -29,14 +29,15 @@ async function claimBonus({ ID }) {
 
   // this check if the user is present in the bonus table
   const isActive = getUserBonus.length > 0;
+  // console.log(isActive, ">><<<");
 
   const { userID, reward, count, streak, date } = await setNextClaim(
     getUserBonus[0],
-    isActive,
+    !isActive,
     ID
   );
 
-  console.log("claim ID", { userID, reward, count, streak, date });
+  // console.log("claim ID", { userID, reward, count, streak, date });
 
   if (isActive) {
     try {
@@ -57,7 +58,7 @@ async function claimBonus({ ID }) {
 
       return { result, status: true, ID };
     } catch (error) {
-      console.error("Error updating bonus:", error);
+      // console.error("Error updating bonus:", error);
       return { result: null, status: false, ID };
     }
   } else {
@@ -68,16 +69,23 @@ async function claimBonus({ ID }) {
 // this is to check if the user has claimed the current day bonus ---> boolean
 async function isBonusClaimed(userID) {
   const DB = new Database();
-  const now = currentTime().now;
+  const now = currentTime().YMD;
 
   try {
-    let { results } = await DB.query("SELECT * FROM `bonus` WHERE `userID`=?", [
-      userID,
-    ]);
-    console.log(results);
-    return results.length > 0 ? true : false;
+    let { results } = await DB.query(
+      "SELECT date FROM `bonus` WHERE `userID`=?",
+      [userID]
+    );
+    if (results.length == 0) {
+      return false;
+    }
+    results = JSON.parse(JSON.stringify(results))[0].date;
+    let T = new Date(results)
+    
+    // console.log("Have user claimed today bonus", T == now);
+    return (T.getFullYear() == now.getFullYear() && T.getMonth() == now.getMonth() && T.getDate() == now.getDate()) ? true : false;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return false;
   }
 }
@@ -90,17 +98,18 @@ async function isUserActive(userID) {
     ]);
     return JSON.parse(JSON.stringify(result.results)).length > 0;
   } catch (error) {
-    console.error("Error in isUserActive:", error);
+    // console.error("Error in isUserActive:", error);
     return false;
   }
 }
 
-async function setNextClaim(record, active, id) {
+async function setNextClaim(record, isUserInactive, id) {
   const { Y, M, D, now } = currentTime();
-  // console.log("records data", !record);
+  console.log("records data", record);
 
   // for users that has not claim bonus before
-  if (!active) {
+  if (isUserInactive) {
+    // console.log("User has not claimed bonus before");
     let nextClaim = {
       userID: id,
       reward: Number(process.env.AMOUNT),
@@ -110,7 +119,7 @@ async function setNextClaim(record, active, id) {
     };
     return nextClaim;
   }
-
+  // console.log("User has claimed bonus before");
   let nextClaim = {
     userID: record.userID,
     reward: Number(process.env.AMOUNT),
@@ -118,19 +127,11 @@ async function setNextClaim(record, active, id) {
     streak: record.streak,
     date: now,
   };
-
-  // extracting the year, month and date from the record
-  record.date = record.date + "";
-  // console.log(record, active, ">>>>>");
-  const year = parseInt(record.date.split("-")[0]);
-  const month = parseInt(record.date.split("-")[1]);
-  const date = parseInt(record.date.split("-")[2]);
-
   // checking if the claim record is frequent
 
-  let onTrack = compareTime({ year, month, date }, { Y, M, D, now }).onTrack;
+  let onTrack = compareTime(record.date, nextClaim.date).onTrack;
 
-  console.log(onTrack);
+  // console.log("On track",onTrack);
 
   if (onTrack) {
     nextClaim.count += 1;
@@ -159,9 +160,9 @@ async function getBonus(ID) {
     );
     return JSON.parse(JSON.stringify(results));
   } catch (error) {
-    console.log("=================NO BONUS AVAILABLE ======================");
-    console.log(error);
-    console.log("=======================================");
+    // console.log("=================NO BONUS AVAILABLE ======================");
+    // console.log(error);
+    // console.log("=======================================");
     return [];
   }
 }

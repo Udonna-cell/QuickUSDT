@@ -22,6 +22,7 @@ router.get("/", async function (req, res, next) {
   };
 
   console.log("Claim start");
+  console.log(info);
   let claim = await claimBonus(info);
   let balance = await Balance(info.ID)
   console.log(claim, "<< claim <<<");

@@ -1,5 +1,6 @@
 function currentTime() {
   let now = new Date();
+  let YMD = now;
   let M =
     now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
 
@@ -11,13 +12,16 @@ function currentTime() {
     M,
     D,
     now,
+    YMD,
   };
 }
 
-function compareTime({ year, month, date }, { Y, M, D, now }) {
+function compareTime(prev, curr) {
+  prev = new Date(prev)
+  curr = new Date(curr)
   const calender = [
     { name: "Jan", date: 31 },
-    { name: "Feb", date: Y % 4 == 0 ? 29 : 28 },
+    { name: "Feb", date: curr.getFullYear() % 4 == 0 ? 29 : 28 },
     { name: "Mar", date: 31 },
     { name: "Apr", date: 30 },
     { name: "May", date: 31 },
@@ -29,45 +33,20 @@ function compareTime({ year, month, date }, { Y, M, D, now }) {
     { name: "Nov", date: 30 },
     { name: "Dec", date: 31 },
   ];
+  
   // Next date from he previous
-  let expectedDate = {
-    y: 0,
-    m: 0,
-    d: 0,
-  };
-  if (date + 1 >= calender[month - 1]) {
-    if (month + 1 > 12) {
-      expectedDate.m = 1;
-      expectedDate.y = year + 1;
-    } else {
-      expectedDate.m = month + 1;
-      expectedDate.y = year;
-    }
+  let expectedDate = new Date(prev)
+  expectedDate.setDate(prev.getDate() + 1)
+  // console.log(prev, expectedDate.getDate(), curr.getDate());
+  // console.log(expectedDate.getFullYear() === curr.getFullYear());
+  // console.log(expectedDate.getMonth() === curr.getMonth());
+  // console.log(expectedDate.getDate() === curr.getDate());
 
-    expectedDate.d =
-      date + 1 - calender[month - 1] > 0
-        ? date + 1 - calender[month - 1]
-        : calender[month - 1];
-  } else {
-    expectedDate.d = date + 1;
-    expectedDate.y = year;
-    expectedDate.m = month;
-  }
-
-  let onTrack = new Array(3)
-    .fill(false)
-    .map((v, i) => {
-      if (i == 0) {
-        return Y - 0 == expectedDate.y;
-      }
-      if (i == 1) {
-        return M - 0 == expectedDate.m;
-      }
-      if (i == 2) {
-        return D - 0 == expectedDate.d;
-      }
-    })
-    .every((v) => v == true);
+  let onTrack =  (
+    expectedDate.getFullYear() === curr.getFullYear() &&
+    expectedDate.getMonth() === curr.getMonth() &&
+    expectedDate.getDate() === curr.getDate()
+  );
   return { onTrack, calender };
 }
 

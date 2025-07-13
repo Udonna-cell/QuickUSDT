@@ -7,12 +7,14 @@ block content
         p.subheading Welcome back, #{user.username}
 
         .balance-box
+          p
             span.balance-indicator
-            span.balance-text Balance: #{balance}$
+            | Wallet Balance 
+          p #{balance}$
 
-        input.amount-input(type="number" name="amount" placeholder="Min. 0.001")
+        input.amount-input(type="number" name="amount" placeholder="Min. 0.001" style="display: none")
 
-        .action-buttons
+        .action-buttons(style="display: none")
             button.btn.deposit-btn
                 |  Deposit
             button.btn.withdraw-btn

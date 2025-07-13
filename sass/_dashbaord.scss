@@ -1,44 +1,56 @@
 @use "global" as *;
+
 .dashboard {
   background: $color-background;
   padding: 2rem;
   font-family: "Inter", sans-serif;
   color: $color-text;
-
+  
   .heading {
     font-size: 2.5rem;
     font-weight: bold;
     color: $color-heading;
     margin-bottom: 0.5rem;
   }
-
+  
   .subheading {
     color: $color-muted;
     margin-bottom: 2rem;
   }
-
+  
   .balance-box {
     background: $color-card;
     padding: 1rem 1.5rem;
     border-radius: 0.75rem;
-    display: flex;
-    align-items: center;
     margin-bottom: 1.5rem;
-
-    .balance-indicator {
-      width: 1.5rem;
-      height: 1.5rem;
-      background-color: $color-danger;
-      border-radius: 0.5rem;
-      margin-right: 0.75rem;
+    
+    & > p:first-child {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      & > .balance-indicator {
+        width: 0.5rem;
+        height: 0.5rem;
+        background-color: blue;
+        box-shadow: 0 0 0 3px rgba(60,60,246,0.384);
+        border-radius: 50%;
+      }
     }
-
-    .balance-text {
+    & > p:last-child {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bolder;
+      font-size: 3.5rem;
+    }
+    
+    
+    /* .balance-text {
       font-size: 1.25rem;
       color: $color-heading;
-    }
+    } */
   }
-
+  
   .amount-input {
     width: 100%;
     padding: 0.75rem 1rem;
@@ -49,20 +61,20 @@
     border-radius: 0.75rem;
     margin-bottom: 2rem;
     outline: none;
-
+    
     &::placeholder {
       color: $color-muted;
     }
-
+    
     &:focus {
       border-color: $color-primary;
     }
   }
-
+  
   .action-buttons {
     display: flex;
     gap: 1rem;
-
+    
     .btn {
       flex: 1;
       display: flex;
@@ -77,30 +89,30 @@
       color: $color-button-text;
       cursor: pointer;
       transition: background 0.2s ease-in-out;
-
+      
       .icon {
         font-size: 1.2rem;
       }
     }
-
+    
     .deposit-btn {
       background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjU2IDI1NiI+PHBhdGggZmlsbD0iY3VycmVudENvbG9yIiBkPSJNMTI4IDM1LjMxVjEyOGE4IDggMCAwIDEtMTYgMFYzNS4zMUw5My42NiA1My42NmE4IDggMCAwIDEtMTEuMzItMTEuMzJsMzItMzJhOCA4IDAgMCAxIDExLjMyIDBsMzIgMzJhOCA4IDAgMCAxLTExLjMyIDExLjMyWm02NCA4OC4zMVY5NmExNiAxNiAwIDAgMC0xNi0xNmgtMTZhOCA4IDAgMCAwIDAgMTZoMTZ2ODAuNGEyOCAyOCAwIDAgMC00NC4yNSAzMy42bC4yNC4zOGwyMi4yNiAzNGE4IDggMCAwIDAgMTMuMzktOC43NmwtMjIuMTMtMzMuNzlBMTIgMTIgMCAwIDEgMTY2LjQgMTkwYy4wNy4xMy4xNS4yNi4yMy4zOGwxMC42OCAxNi4zMWE4IDggMCAwIDAgMTQuNjktNC4zOFYxNDRhNzQuODQgNzQuODQgMCAwIDEgMjQgNTQuNjlWMjQwYTggOCAwIDAgMCAxNiAwdi00MS4zNWE5MC44OSA5MC44OSAwIDAgMC00MC03NS4wM004MCA4MEg2NGExNiAxNiAwIDAgMC0xNiAxNnYxMDRhOCA4IDAgMCAwIDE2IDBWOTZoMTZhOCA4IDAgMCAwIDAtMTYiLz48L3N2Zz4="),
         linear-gradient(135deg, $color-gradient-start, $color-gradient-end);
       background-repeat: no-repeat, no-repeat;
       background-position: 10% center, center;
       background-size: 1em, cover;
-
+      
       &:hover {
         opacity: 0.9;
       }
     }
-
+    
     .withdraw-btn {
       background-color: $color-primary;
       background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48ZyBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuNSIgY29sb3I9ImN1cnJlbnRDb2xvciI+PHBhdGggZD0ibTE4LjkzNSAxMy45NDVsLS42Ny0zLjY0OGMtLjI5LTEuNTc2LS40MzUtMi4zNjQtMS4wMDgtMi44M1MxNS44NiA3IDE0LjIxMyA3SDkuNzg3Yy0xLjY0NyAwLTIuNDcgMC0zLjA0NC40NjdjLS41NzMuNDY2LS43MTggMS4yNTQtMS4wMDggMi44M2wtLjY3IDMuNjQ4Yy0uNiAzLjI3MS0uOTAxIDQuOTA3LjAyNCA1Ljk4QzYuMDE0IDIxIDcuNzI0IDIxIDExLjE0MiAyMWgxLjcxNmMzLjQxOCAwIDUuMTI4IDAgNi4wNTMtMS4wNzRzLjYyNS0yLjcxLjAyNC01Ljk4Ii8+PHBhdGggZD0iTTEyIDEwLjVWMTdtLTIuNS0ybDIuNSAyLjVsMi41LTIuNW02LjUtNGExLjUgMS41IDAgMCAwIC40MTQtLjMwNUMyMiAxMC4wODkgMjIgOS4xMSAyMiA3LjE1MnMwLTIuOTM2LS41ODYtMy41NDRTMTkuODg2IDMgMTggM0g2Yy0xLjg4NiAwLTIuODI4IDAtMy40MTQuNjA4UzIgNS4xOTUgMiA3LjE1MnMwIDIuOTM2LjU4NiAzLjU0M3EuMTguMTg4LjQxNC4zMDUiLz48L2c+PC9zdmc+");
       background-repeat: no-repeat;
       background-position: 10% center;
-
+      
       &:hover {
         // background: $color-primary-hover;
       }
@@ -116,7 +128,8 @@ section.activities {
   align-items: center;
   // background-color: red;
   margin: 3rem 0;
-  & > .card {
+
+  &>.card {
     display: flex;
     gap: 1.5rem;
     align-items: center;
@@ -124,23 +137,26 @@ section.activities {
     background: linear-gradient(465deg, $color-primary 5%, $color-shadow);
     padding: 0.7rem;
     border-radius: 5px;
-
-    & > article {
+    
+    &>article {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-      & > h3 {
+
+      &>h3 {
         text-transform: capitalize;
       }
-      & > P {
+      
+      &>P {
         opacity: 0.8;
+
         &::first-letter {
           text-transform: capitalize;
         }
       }
     }
-
-    & > .btn {
+    
+    &>.btn {
       flex-basis: 170px;
       text-transform: capitalize;
       background: $color-surface;
@@ -159,59 +175,66 @@ section.layout {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  & > section.event {
+  
+  &>section.event {
     background-color: $color-surface;
     padding: 1.5rem;
     border-radius: 10px;
     text-align: center;
-
-    & > h1 {
+    
+    &>h1 {
       font-size: xx-large;
       text-transform: capitalize;
     }
-    & > p {
+    
+    &>p {
       color: $color-text;
     }
-    & > .container {
+    
+    &>.container {
       margin: 1rem 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      & > .illustration {
-        background: linear-gradient(
-          165deg,
-          $color-gradient-start,
-          $color-gradient-end
-        );
+
+      &>.illustration {
+        background: linear-gradient(165deg,
+            $color-gradient-start,
+            $color-gradient-end );
         width: 65px;
         height: 65px;
         border-radius: 5px;
       }
     }
-    & > .flex {
+    
+    &>.flex {
       display: flex;
       align-items: center;
       gap: 0.7rem;
-      & > .progress {
+
+      &>.progress {
         display: flex;
         gap: 0.4rem;
-        & > .bar {
+
+        &>.bar {
           width: 15px;
           height: 15px;
           background-color: rgb(16, 16, 100);
           border-radius: 50%;
         }
-        & > .bar.fill {
+        
+        &>.bar.fill {
           background-color: $color-primary;
         }
       }
-      & > button {
+      
+      &>button {
         text-transform: capitalize;
         padding: 0.5rem 1.5rem;
       }
     }
   }
+  
   &.hide {
     display: none;
   }

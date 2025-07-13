@@ -190,20 +190,30 @@ button.btn:active,
   background: #1a1a1a;
   padding: 1rem 1.5rem;
   border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+  /* .balance-text {
+    font-size: 1.25rem;
+    color: $color-heading;
+  } */
+}
+.dashboard .balance-box > p:first-child {
   display: flex;
   align-items: center;
-  margin-bottom: 1.5rem;
+  gap: 1rem;
 }
-.dashboard .balance-box .balance-indicator {
-  width: 1.5rem;
-  height: 1.5rem;
-  background-color: #ef4444;
-  border-radius: 0.5rem;
-  margin-right: 0.75rem;
+.dashboard .balance-box > p:first-child > .balance-indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: blue;
+  box-shadow: 0 0 0 3px rgba(60, 60, 246, 0.384);
+  border-radius: 50%;
 }
-.dashboard .balance-box .balance-text {
-  font-size: 1.25rem;
-  color: #ffffff;
+.dashboard .balance-box > p:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+  font-size: 3.5rem;
 }
 .dashboard .amount-input {
   width: 100%;

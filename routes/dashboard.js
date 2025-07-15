@@ -9,10 +9,13 @@ const {
 } = require("../utility/cookies/bonus");
 const { getEvents } = require("../utility/events/getEvents");
 const { Balance } = require("../utility/transaction");
+const { getBalance } = require("../utility/getBalance");
+const { referrals } = require("../utility/referrals.js");
 const router = express.Router();
 // const { initBonus } = require("../utility/cookies/bonus")
 
 router.get("/", async (req, res) => {
+  console.log(await getBalance("orabueze"));
   // global
   let DB = new Database();
   let ID = req.cookies.ID;
@@ -52,17 +55,16 @@ router.get("/", async (req, res) => {
     } catch (error) {
       // console.log(error);
     }
-
-    // console.log("hellllllloooooooo!!!!!!!!!!!!!!!!");
-    // console.log("is bonus claim today", isBonusSet);
-    // console.log(userBonus);
+    
+    let invite = await referrals(user.username);
     res.render("dashboard", {
       user,
       isBonusSet,
       userBonus,
       events,
       isEventEmpty,
-      balance
+      balance,
+      invite
     });
   }
 });

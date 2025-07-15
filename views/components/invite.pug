@@ -1,0 +1,10 @@
+.invite
+  .heading
+    div
+      .icon.tdesign--member
+      p pool members list
+    div
+      p #{invite.length} users
+  .body
+    each i in invite
+      include ../includes/invite.pug

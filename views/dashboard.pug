@@ -27,6 +27,8 @@ block content
         else 
             each event in events
                 include ./components/event.pug          
+    //- referral dashboard
+    include ./components/invite.pug
 
     //- This is the event layout
     section.layout(class={ hide: isBonusSet })

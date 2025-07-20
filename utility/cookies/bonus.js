@@ -145,7 +145,8 @@ async function setNextClaim(record, isUserInactive, id) {
   const multiplier = nextClaim.count % 7 === 0 ? 7 : nextClaim.count % 7;
   nextClaim.reward = nextClaim.reward * multiplier;
   nextClaim.day = multiplier;
-  // nextClaim.date = now;
+  // nextClaim.count = multiplier
+  nextClaim.date = now;
 
   return nextClaim;
 }

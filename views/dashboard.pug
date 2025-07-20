@@ -35,7 +35,7 @@ block content
         - var title = "daily bonus"
         - var detail = "claim a bonus every day"
         - var amount = userBonus.reward + " USDT"
-        - var streak = userBonus.count + " / 7"
-        - var claimed = userBonus.count
-        - var left = 7 - userBonus.count
+        - var streak = userBonus.day + " / 7"
+        - var claimed = userBonus.day
+        - var left = 7 - userBonus.day
         include ./includes/event.pug

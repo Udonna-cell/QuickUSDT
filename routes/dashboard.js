@@ -56,6 +56,8 @@ router.get("/", async (req, res) => {
       // console.log(error);
     }
     
+    userBonus.day = userBonus.day == undefined? 1 : userBonus.day
+    
     let invite = await referrals(user.username);
     res.render("dashboard", {
       user,

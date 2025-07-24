@@ -403,7 +403,15 @@ section.layout > section.event > .container > .illustration {
   background: linear-gradient(165deg, #6366f1, #ec4899);
   width: 65px;
   height: 65px;
+  margin-bottom: 2rem;
+  position: relative;
   border-radius: 5px;
+}
+section.layout > section.event > .container > .illustration > img {
+  width: 140%;
+  position: absolute;
+  top: 10%;
+  left: 5%;
 }
 section.layout > section.event > .flex {
   display: flex;

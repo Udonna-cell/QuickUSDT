@@ -14,10 +14,10 @@ block content
 
         input.amount-input(type="number" name="amount" placeholder="Min. 0.001" style="display: none")
 
-        .action-buttons(style="display: none")
-            button.btn.deposit-btn
+        .action-buttons(style="display: noneu")
+            button.btn.deposit-btn(onclick=`shareContent()`)
                 |  Deposit
-            button.btn.withdraw-btn
+            button.btn.withdraw-btn(onclick=`copyToClipboard()`)
                 |  Withdraw
     h4 Events available (#{events.length})
     section.activities
@@ -39,3 +39,7 @@ block content
         - var claimed = userBonus.day
         - var left = 7 - userBonus.day
         include ./includes/event.pug
+
+
+block script 
+    script(src="/javascripts/utility.js")

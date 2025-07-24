@@ -204,7 +204,15 @@ section.layout {
             $color-gradient-end );
         width: 65px;
         height: 65px;
+        margin-bottom: 2rem;
+        position: relative;
         border-radius: 5px;
+        & > img {
+          width: 140%;
+          position: absolute;
+          top: 10%;
+          left: 5%;
+        }
       }
     }
     

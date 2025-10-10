@@ -1,1 +1,16 @@
-h1 Daily bonus
+section.main-container
+  .gift-box
+    img.gift(src="/images/logo/gift.png" alt="Daily Reward Gift")
+    .confetti
+
+  .progress-bar
+    each num in [1,2,3,4,5,6,7]
+      .circle(class=(num <= claimed ? "active" : "")) #{num}
+
+  .reward-text
+    p Your daily reward:
+    h2= amount
+    p.info Come back tomorrow to get your bonus points. 
+      | Skipping a day resets your check-in.
+
+  button.continue-btn(onclick="dailyBonus()") Continue

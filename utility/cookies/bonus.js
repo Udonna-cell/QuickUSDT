@@ -1,6 +1,7 @@
 require("dotenv").config();
 const Database = require("../database");
 const { currentTime, compareTime } = require("../date");
+const { Transaction } = require("../transaction.js");
 
 async function setBonus({ userID, reward, count, streak, date }) {
   const DB = new Database();
@@ -45,10 +46,11 @@ async function claimBonus({ ID }) {
         "UPDATE `bonus` SET `reward`= ?, `count`= ?, `streak`= ?, `date`= ? WHERE `userID`= ?",
         [reward, count, streak, date, userID]
       );
-      await DB.query(
-        "INSERT INTO `transactions`(`ID`, `amount`, `type`, `flag`, `date`) VALUES (?, ?, ?, ?, ?)",
-        [ID, reward, "Credit", "Bonus", date]
-      );
+      await Transaction(ID, reward, "Credit", "Bonus")
+      // await DB.query(
+      //   "INSERT INTO `transactions`(`ID`, `amount`, `type`, `flag`, `date`) VALUES (?, ?, ?, ?, ?)",
+      //   [ID, reward, "Credit", "Bonus", date]
+      // );
 
       const resultRaw = await DB.query(
         "SELECT * FROM `bonus` WHERE `userID` = ?",

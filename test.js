@@ -18,5 +18,5 @@ const x = new Man()
 x.name = "stabug6"
 console.log(x.name);
 const y = new Man()
-console.log(x.name);
-
+console.log(y.name);
+console.log(x.name)

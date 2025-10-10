@@ -1,0 +1,71 @@
+section.notifications
+  .card
+    .card-header
+      h3.title Your notifications
+      .tabs
+        button.tab.active View all 
+          span.count 10
+        button.tab Unread
+        
+      .actions
+        i.icon-check
+        i.icon-settings
+
+    .card-body
+      //- Notification Item 1
+      .notification.unread
+        .avatar
+          img(src="/images/logo/logo.png", alt="Amélie")
+          span.status.online
+        .content
+          .info
+            span.name Amélie
+            |  commented in 
+            span.highlight Dashboard 2.0
+          .message Really love this approach. I think this is the best solution for the document sync UX issue.
+          .meta 2 hours ago
+        .dot
+
+      //- Notification Item 2
+      .notification.unread
+        .avatar
+          img(src="/images/logo/logo.png", alt="Sienna")
+          span.status.online
+        .content
+          .info
+            span.name Sienna 
+            |  followed you
+          .meta 2 hours ago
+        .dot
+
+      //- Notification Item 3
+      .notification
+        .avatar
+          img(src="/images/logo/logo.png", alt="Ammar")
+          span.status.online
+        .content
+          .info
+            span.name Ammar 
+            |  invited you to 
+            span.highlight Blog design
+          .meta 3 hours ago
+          .actions
+            button.btn.decline Decline
+            button.btn.accept Accept
+
+      //- Notification Item 4
+      .notification
+        .avatar
+          img(src="/images/logo/logo.png", alt="Mathilde")
+          span.status.online
+        .content
+          .info
+            span.name Mathilde 
+            |  shared a file in 
+            span.highlight Dashboard 2.0
+          .file
+            .file-icon MP4
+            .file-name Prototype recording 01.mp4
+            .file-size 14 MB
+            i.icon-download
+          .meta 4 hours ago

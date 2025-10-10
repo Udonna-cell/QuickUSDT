@@ -1,71 +1,73 @@
 extends layout
 
 block content
-    .register 
+    section.signup 
         if isSignup
-            form(action="" method="post")
-                article 
-                    h2 Create an account 
-                    p Register with email connected to faucetPay.io 
-
-                //- referral indicator
-                .referral-indicator 
-                    p Invited by: 
-                        span= invitee
-
-                //- user names input field
-                .names  
-                    .first-name 
-                        label(for="first-name") First name
-                        input#first-name(type="text" name="first-name" placeholder="John", value= user ? user.firstName : "", required) 
-                    .last-name 
-                        label(for="last-name") last name
-                        input#last-name(type="text" name="last-name" placeholder="Doe", value= user ? user.lastName : "", required)
-
-                //- user operation username input field
-                .username  
-                    label(for="username") username
-                    input#username(type="text" name="username" placeholder="johndoe", value= user ? user.username : "", required)
-
-                //- email field
-                .email 
-                    label(for="email") email
-                    input#email(type="email" name="email" placeholder="John@gmail.com", value= user ? user.email : "", autocomplete="false",  required)
-
-                //- password field
-                .password  
-                    label(for="password") password
-                    input#password(type="password" name="password" placeholder="password", value= user ? user.password : "", required)
-                    .eye(onclick="hideShow()")
-
-                //- confirm password field
-                .confirm-password 
-                    label(for="confirm-password") Confirm password
-                    input#confirm-password(type="password" name="confirm-password", required)
+          .register-card
+            .header
+              button.back-btn ←
+              h1.title Register
+              p.subtitle Create your account
+              // p Register with email connected to faucetPay.io 
+              
+              //- referral indicator
+              .referral-indicator 
+                p Invited by: 
+                  span= invitee
+                  
+            form.register-form(action="" method="post")
+              .form-group
+                label(for="first-name") First name
+                input#first-name(type="text" placeholder="Enter your first name" name="first-name", value= user ? user.firstName : "", required) 
+              .form-group
+                label(for="last-name") last name
+                input#last-name(type="text" name="last-name" placeholder="Doe", value= user ? user.lastName : "", required)
+              .form-group
+                label(for="username") username
+                input#username(type="text" placeholder="Enter your username" name="username" value= user ? user.username : "", required)
+              .form-group
+                label(for="email") Email
+                input#email(type="email" placeholder="Enter your email" name="email"  value= user ? user.email : "", autocomplete="false",  required)
+              .form-group.password
+                label(for="password") Password
+                input#password(type="password" name="password" placeholder="password", value= user ? user.password : "", required)
+                button.toggle-eye(type="button" onclick="hideShow()")
+                  span.mdi--show-outline.eye
+              .form-group.password
+                label(for="confirm-password") Repeat Password
+                input#confirm-password(type="password" name="confirm-password", required)
+              button.submit-btn(type="submit") Register
+            .login-link
+              | Already have an account? 
+              a(href="/signin") Log in
+        else
+            .register-card
+              .header
+                button.back-btn ←
+                h1.title Sign in
+                p.subtitle Welcome Back
+                // p.subtitle Register with email connected to faucetPay.io 
                 
-                button.btn.form(type="submit") Register
-                p Already have an account? 
-                    a(href="/signin") Sign in
-        else 
-            form(action="" method="post")
-                article 
-                    h2 Welcome Back
-                    p Login with email connected to faucetPay.io 
-
-                //- email field
-                .email 
-                    label(for="email") email
-                    input#email(type="email" name="email" placeholder="John@gmail.com", value= user ? user.email : "", required)
-
-                //- password field
-                .password  
-                    label(for="password") password
-                    input#password(type="password" name="password" placeholder="password", value= user ? user.password : "", required autocomplete)
-                    .eye(onclick="hideShow()")
-
-                button.btn.form(type="submit") Login
-                p Don't have an account? 
-                    a(href="/register") Sign up
+                //- referral indicator
+                // .referral-indicator 
+                  p Invited by: 
+                    span= invitee
+                    
+              form.register-form(action="" method="post")
+                .form-group
+                  label(for="email") Email
+                  input#email(type="email" placeholder="Enter your email" name="email", value= user ? user.email : "", required)
+                .form-group.password
+                  label(for="password") Password
+                  input#password(type="password" name="password" placeholder="password", value= user ? user.password : "", required autocomplete)
+                  button.toggle-eye(type="button" onclick="hideShow()")
+                    span.mdi--show-outline.eye
+                  
+                button.submit-btn(type="submit") Login
+              .login-link
+                | Don't have an account? 
+                a(href="/register") Sign up
+              
 
 block script 
     script(src="/javascripts/register.js")

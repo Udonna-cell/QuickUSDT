@@ -4,8 +4,23 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title= title
+    script(src="/socket.io/socket.io.js")
     script(src="https://cdn.jsdelivr.net/npm/sweetalert2@11")
     link(rel='stylesheet', href='/stylesheets/style.css')
+    
+    script.
+      const socket = io();
+      function sendMessage(e) {
+        e.preventDefault();
+        const input = document.getElementById('msg');
+        socket.emit('chat message', input.value);
+        input.value = '';
+      }
+      socket.on('chat message', (msg) => {
+        const li = document.createElement('li');
+        li.textContent = msg;
+        document.getElementById('messages').appendChild(li);
+      });
   body
     //- include ./components/nav/nav.pug
     block content

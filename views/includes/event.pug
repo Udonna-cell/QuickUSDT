@@ -3,7 +3,7 @@ section.event
     p= detail 
     .container 
         .illustration
-          img(src="/images/noto--wrapped-gift.svg")
+          img(src="/images/icons/noto--wrapped-gift.svg")
         h2= amount
         p= streak 
     .flex 
@@ -12,4 +12,4 @@ section.event
                 .bar.fill 
             - for (let i = 0; i < left; i++) 
                 .bar 
-        button.btn(onclick="dailyBonus()") claim
+        button.btn() claim

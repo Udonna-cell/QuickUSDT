@@ -1,0 +1,63 @@
+[
+  {
+    "tabName": "Withdraw Methods",
+    "type": "withdraw-tab",
+    "Methods": [
+      {
+        "name": "To NGN",
+        "detail": "Using local payment methods",
+        "state": "coming soon",
+        "mark": "coming-soon",
+        "icon": "/images/img/nigeria.png"
+      },
+      {
+        "name": "To FaucetPay",
+        "detail": "Get your wallet credited asap :)",
+        "state": "coming soon",
+        "mark": "coming-soon",
+        "icon": "/images/img/facuetpay-seeklogo.png"
+      },
+      {
+        "name": "To Exchange",
+        "detail": "Direct deposit of USDT",
+        "state": "coming soon",
+        "mark": "coming-soon",
+        "icon": "/images/img/exchange_5844786.png"
+      }
+    ]
+  },
+  {
+    "tabName": "Deposit Methods",
+    "type": "deposit-tab",
+    "Methods": [
+      {
+        "name": "To NGN",
+        "detail": "Using local payment methods",
+        "state": "coming soon",
+        "mark": "coming-soon",
+        "icon": "/images/img/nigeria.png"
+      },
+      {
+        "name": "To FaucetPay",
+        "detail": "Get your wallet credited asap :)",
+        "icon": "/images/img/facuetpay.png",
+        "state": "coming soon",
+        "mark": "coming-soon"
+      },
+      {
+        "name": "To Exchange",
+        "detail": "Direct deposit of USDT",
+        "state": "coming soon",
+        "mark": "coming-soon",
+        "icon": "/images/img/exchange_5844786.png"
+      },
+      {
+        "name": "Virtual Bank Account",
+        "detail": "Using US,/EU banking details",
+        "state": "coming soon",
+        "mark": "coming-soon",
+        "icon": "/images/img/bank.png"
+      }
+    ]
+  }
+]

@@ -1,5 +1,13 @@
+
+
+function logout() {
+  window.location.href = "/logout"
+}
+
+
+
 function getBaseURL() {
-  let userID = document.querySelector("p.subheading").textContent.split(",")[1].trim()
+  let userID = document.querySelector("p.subheading").textContent.trim()
   try {
     const parentURL = window.parent.location.href; // May throw if cross-origin
     const urlObj = new URL(parentURL);
@@ -12,38 +20,61 @@ function getBaseURL() {
   }
 }
 
-function shareContent() {
-  // Check for Web Share API support (mostly for mobile)
-  let { url, title, text } = {
-    url: "https://example.com", title: "Check this out!", text: "This is something interesting to share."
-  }
-  url = getBaseURL()
-  if (navigator.share) {
-    navigator.share({
-      title: title,
-      text: text,
-      url: url
-    })
-      .then(() => console.log("Shared successfully"))
-      .catch((err) => console.error("Share failed:", err));
-  } else {
-    // Fallback for specific platforms
-    const encodedUrl = encodeURIComponent(url);
-    const encodedText = encodeURIComponent(text);
 
-    const platforms = {
-      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-      whatsapp: `https://wa.me/?text=${encodedText}%20${encodedUrl}`,
-      twitter: `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`,
-      telegram: `https://t.me/share/url?url=${encodedUrl}&text=${encodedText}`,
-    };
 
-    // Open in new tabs
-    for (const [platform, link] of Object.entries(platforms)) {
-      window.open(link, "_blank");
+async function shareContent() {
+  // alert("man of steel")
+  // Content to be shared
+  const title = "Check this out!";
+  const text = "This is something interesting to share.";
+  const url = getBaseURL();
+
+  // Image file URL (must be from the same origin or CORS-enabled)
+  const imageUrl = "/images/vecteezy_happy-3d-student-boy-with-books-on-white-background-png_22484651.png"; // Update to your image path
+
+  try {
+    // Fetch the image and convert it into a File object
+    const response = await fetch(imageUrl);
+    const blob = await response.blob();
+    const file = new File([blob], "shared-image.jpg", { type: blob.type });
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({
+        title,
+        text,
+        url,
+        files: [file]
+      });
+      console.log("Shared successfully with image!");
+    } else if (navigator.share) {
+      // Fallback to sharing without file if file sharing isn't supported
+      await navigator.share({
+        title,
+        text,
+        url
+      });
+      console.log("Shared successfully without image.");
+    } else {
+      // Fallback for platforms without Web Share API
+      const encodedUrl = encodeURIComponent(url);
+      const encodedText = encodeURIComponent(text);
+
+      const platforms = {
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+        whatsapp: `https://wa.me/?text=${encodedText}%20${encodedUrl}`,
+        twitter: `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`,
+        telegram: `https://t.me/share/url?url=${encodedUrl}&text=${encodedText}`,
+      };
+
+      for (const [platform, link] of Object.entries(platforms)) {
+        window.open(link, "_blank");
+      }
     }
+  } catch (err) {
+    console.error("Share failed:", err);
   }
 }
+
 
 function copyToClipboard() {
   const text = getBaseURL();
@@ -70,7 +101,80 @@ function copyToClipboard() {
   }
 }
 
-// Example usage:
+let isPageOpen = false
+
+async function frameToggle(option, core) {
+  // console.log(option);
+  let app = document.querySelector(`section.${option}`);
+  
+  isPageOpen = !isPageOpen
+  if (isPageOpen) {
+    app.style.top = '0%';
+    let content = await fetchData(core);
+    console.log(content.page);
+  document.querySelector(`section.${option} > .page`).innerHTML = content.page
+  } else {
+    app.style.top = '100%';
+  }
+}
+
+function withdraw() {
+  document.body.style.overflow = "hidden"
+  const tab = document.querySelector("section.tab.withdraw-tab").style.bottom = "1rem";
+}
+function deposit() {
+  document.body.style.overflow = "hidden"
+  const tab = document.querySelector("section.tab.deposit-tab").style.bottom = "1rem";
+}
 
 
-// Example usage:
+
+
+// Gesture logic 178
+
+function SwipeDownQuestion(me) {
+  document.body.style.overflow = "scroll"
+  const tab = me.style.bottom = "-100%";
+}
+
+// Detect swipe-down gesture
+let touchStartY = 0;
+
+document.querySelectorAll("section.tab").forEach((element) => {
+  element.addEventListener("touchstart", function (e) {
+    touchStartY = e.changedTouches[0].screenY;
+  });
+});
+
+document.querySelectorAll("section.tab").forEach((element) => {
+  element.addEventListener("touchend", function (e) {
+    let touchEndY = e.changedTouches[0].screenY;
+
+    if (touchEndY - touchStartY > 50) { // threshold for swipe down
+      SwipeDownQuestion(this);
+    }
+  });
+});
+
+
+
+// Define an async function to fetch data
+async function fetchData(url) {
+  try {
+    // Send request
+    const response = await fetch(url);
+
+    // Check if request was successful
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    // Parse the response as JSON
+    const data = await response.json();
+
+    // Return the data
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}

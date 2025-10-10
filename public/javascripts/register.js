@@ -24,11 +24,13 @@ form.addEventListener("submit", (event)=>{
 function hideShow() {
     if (!isPasswordVisible) {
         password.type = "text"
-        document.querySelector(".eye").classList.add("active")
+        document.querySelector(".eye").classList.remove("mdi--show-outline")
+        document.querySelector(".eye").classList.add("ci--hide")
         isPasswordVisible =true
     } else {
         password.type = "password"
-        document.querySelector(".eye").classList.remove("active")
+        document.querySelector(".eye").classList.remove("ci--hide")
+        document.querySelector(".eye").classList.add("mdi--show-outline")
         isPasswordVisible = false
     }
 }

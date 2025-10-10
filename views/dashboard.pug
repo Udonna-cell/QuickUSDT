@@ -1,36 +1,57 @@
 extends layout
 
-block content 
+block content
     //- include ./components/nav/nav.pug
+
     .dashboard
-        h1.heading Dashboard
-        p.subheading Welcome back, #{user.username}
+        // h1.heading Dashboard
+        .header
+            div
+                .profile
+                    img(src="/images/profile/GbUg885TXyE8UZOr.png" alt="profile")
+                p.subheading= user.username
+            div
+                .icon(onclick="frameToggle('window','notify')")
+                    img(src="/images/icons/iconoir--app-notification.svg")
 
         .balance-box
-          p
-            span.balance-indicator
-            | Wallet Balance 
-          p #{balance}$
+            p total balance
+            p.balance #{balance}$
+            .cashback
+              p 69
+                span.hugeicons--cashback 
+              p cashback saved 
+                span.weui--arrow-outlined
+            // include ./includes/card.pug
 
-        input.amount-input(type="number" name="amount" placeholder="Min. 0.001" style="display: none")
+        // input.amount-input(type="number" name="amount" placeholder="Min. 0.001" style="display: none")
 
-        .action-buttons(style="display: noneu")
-            button.btn.deposit-btn(onclick=`shareContent()`)
-                |  Deposit
-            button.btn.withdraw-btn(onclick=`copyToClipboard()`)
-                |  Withdraw
+        // include ./components/nav/nav.pug
+
+        // .action-buttons(style="display: nones")
+        //     button.btn.deposit-btn(onclick="deposit()") Deposit
+        //     button.btn.withdraw-btn(onclick="withdraw()") Withdraw
+
     h4 Events available (#{events.length})
     section.activities
-
         if isEventEmpty
             h2 No Events
-        else 
+        else
             each event in events
-                include ./components/event.pug          
-    //- referral dashboard
-    include ./components/invite.pug
+                include ./components/event.pug
 
-    //- This is the event layout
+    //- referral dashboard
+    // include ./components/invite.pug
+
+    each tab in tabs
+        // include ./includes/tab.pug
+
+    include ./includes/window.pug
+    // include ./includes/referral.pug
+    // include ./includes/transaction.pug
+    // include ./signup.pug
+
+    //- This is the bonus layout
     section.layout(class={ hide: isBonusSet })
         - var title = "daily bonus"
         - var detail = "claim a bonus every day"
@@ -38,8 +59,7 @@ block content
         - var streak = userBonus.day + " / 7"
         - var claimed = userBonus.day
         - var left = 7 - userBonus.day
-        include ./includes/event.pug
+        include ./daily-bonus.pug
 
-
-block script 
+block script
     script(src="/javascripts/utility.js")

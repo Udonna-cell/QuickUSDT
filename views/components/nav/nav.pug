@@ -1,4 +1,10 @@
 nav 
-    .icon notification
-    .icon profile
-    .icon logout
+    .icon(onclick="logout()") 
+      img(src="/images/icons/ant-design--logout-outlined.svg")
+    .icon(onclick="frameToggle('window','profile')") 
+      img(src="/images/icons/et--profile-male.svg")
+    .icon(onclick="frameToggle('window','transaction')") 
+      span.solar--history-linear
+    .icon(onclick="frameToggle('window','referral')")
+      img(src="/images/icons/mdi--invite.svg")
+    

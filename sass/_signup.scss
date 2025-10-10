@@ -1,0 +1,125 @@
+section.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8f9fb;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.register-card {
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  width: 340px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+
+  .header {
+    text-align: left;
+    margin-bottom: 20px;
+
+    .back-btn {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0;
+      color: #222;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #777;
+      margin: 4px 0 0;
+    }
+  }
+
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      label {
+        font-size: 12px;
+        color: #888;
+        margin-bottom: 6px;
+      }
+
+      input {
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+        outline: none;
+        transition: border 0.3s;
+
+        &:focus {
+          border: 1px solid #4CAF50;
+        }
+      }
+
+      &.password {
+        input {
+          padding-right: 40px;
+        }
+
+        .toggle-eye {
+          position: absolute;
+          right: 12px;
+          top: 70%;
+          transform: translateY(-50%);
+          background: none;
+          border: none;
+          cursor: pointer;
+          font-size: 16px;
+          color: #666;
+        }
+      }
+    }
+
+    .submit-btn {
+      padding: 14px;
+      background: #a8e063; // light green
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #111;
+      transition: background 0.3s;
+
+      &:hover {
+        background: #91d250;
+      }
+    }
+  }
+
+  .login-link {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 18px;
+    color: #666;
+
+    a {
+      color: #91d250;
+      font-weight: 500;
+      margin-left: 4px;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

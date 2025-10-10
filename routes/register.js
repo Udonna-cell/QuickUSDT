@@ -6,6 +6,9 @@ const {
   checkUsername,
 } = require("../utility/database/checkExist.js");
 const { insertUser, insertInvite } = require("../utility/database/insert.js");
+const { Transaction } = require("../utility/transaction.js");
+const { getUserID } = require("../utility/generateID.js");
+
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
@@ -28,7 +31,7 @@ router.post("/", async function (req, res, next) {
   };
 
   /*
-  Checking if invite is valid. so if valid record it if not register the user without invite
+  Checking if invite is valid. so if valid record it, if not register the user without invite
   */
   let isInviteValid = await checkUsername(user.invite);
   let isUsernameValid = await checkUsername(user.username);
@@ -43,8 +46,13 @@ router.post("/", async function (req, res, next) {
       let invitee = user.invite;
       res.render("register", { invitee, isSignup: true, user });
     } else {
+      // record invite
       let feedBack = await insertUser(user);
       let isInviteRecorded = await insertInvite(user.invite, feedBack.ID)
+      let ID = await getUserID(user.invite)
+      
+      // transaction Record
+      let transactionRecord = await Transaction(ID, 1, "Credit", "Referral")
       // Output data received
       console.log(isInviteRecorded);
 

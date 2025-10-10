@@ -1,0 +1,25 @@
+section.referral
+  - var appName = "QuickUSDT"
+  .container
+    h1.title Invite & Earn Rewards
+    p.subtitle Grow your #{appName} network and earn extra tokens every time your friends join and play.
+
+    .referral-box
+      label(for="referral-link") Your Referral Link
+      div
+        input#referral-link(type="text" value="http://localhost:3000/register?r=xxxx" readonly)
+        .share(onclick="copyToClipboard()")
+          span(class="solar--copy-line-duotone")
+      button.copy-btn(onclick="shareContent()") 
+        span(class="solar--share-outline")
+        | Share invitation link
+
+    .benefits
+      h2 Why Invite Friends?
+      ul
+        li ✅  0.008 Instant bonus tokens
+        li ✅  50% of referrals' daily earnings
+        li ✅  0.0008 Friends get a welcome bonus
+        li ✅ Unlimited earning potential
+    
+    include ../components/invite.pug

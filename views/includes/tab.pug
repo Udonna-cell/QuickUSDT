@@ -1,0 +1,6 @@
+section.tab(class=tab.type)
+  .handle
+  h1= tab.tabName
+  .content
+    each method in tab.Methods
+      include ../components/methods/methods.pug

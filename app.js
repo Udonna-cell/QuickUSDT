@@ -9,17 +9,27 @@ var paymentRouter = require('./routes/payment');
 var usersRouter = require('./routes/users');
 const register = require("./routes/register")
 const signIn = require("./routes/signin")
+const logout = require("./routes/logout")
 const dashboard = require("./routes/dashboard")
 const dailyBonus = require("./routes/daily-bonus")
+const NOTIFICATION = require("./routes/API/notification")
+const TRANSACTION = require("./routes/API/transaction")
+const REFERRAL = require("./routes/API/referral")
 
 // creating connection to the database
 /* 
   this connection is once and it will try connecting to Global database if failed it will try to local instantly
 */
+
 const InitDatabase = require("./utility/database/init");
 InitDatabase()
 
 var app = express();
+
+app.get('/ping', (req, res) => {
+  res.status(200).send('Server is alive 🚀');
+});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,6 +49,10 @@ app.use('/register', register);
 app.use('/signin', signIn);
 app.use('/dashboard', dashboard);
 app.use('/daily-bonus', dailyBonus);
+app.use('/logout', logout);
+app.use('/notify', NOTIFICATION);
+app.use('/transaction', TRANSACTION);
+app.use('/referral', REFERRAL);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

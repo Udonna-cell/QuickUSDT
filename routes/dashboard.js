@@ -10,12 +10,13 @@ const {
 const { getEvents } = require("../utility/events/getEvents");
 const { Balance } = require("../utility/transaction");
 const { getBalance } = require("../utility/getBalance");
-const { referrals } = require("../utility/referrals.js");
+const Tabs = require("../utility/tabs.json")
 const router = express.Router();
 // const { initBonus } = require("../utility/cookies/bonus")
 
 router.get("/", async (req, res) => {
-  console.log(await getBalance("orabueze"));
+  console.log(Tabs);
+  // console.log(await getBalance("orabueze"));
   // global
   let DB = new Database();
   let ID = req.cookies.ID;
@@ -58,7 +59,7 @@ router.get("/", async (req, res) => {
     
     userBonus.day = userBonus.day == undefined? 1 : userBonus.day
     
-    let invite = await referrals(user.username);
+    // let invite = await referrals(user.username);
     res.render("dashboard", {
       user,
       isBonusSet,
@@ -66,7 +67,8 @@ router.get("/", async (req, res) => {
       events,
       isEventEmpty,
       balance,
-      invite
+      // invite,
+      tabs: Tabs
     });
   }
 });

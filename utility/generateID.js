@@ -24,6 +24,20 @@ async function checkIfExist(ID) {
     return false
   }
 }
+async function getUserID(username) {
+  const DB = new Database();
+  try {
+    let {results} = await DB.query("SELECT ID FROM users WHERE username = ?", [username])
+    results = JSON.parse(JSON.stringify(results))[0].ID;
+    console.log("==========>",results, username);
+    // console.log(`username ${username} has an ID ${ID}`);
+    return results
+  } catch (error) {
+    console.log(error);
+    // console.log(`ID does not exist ${ID}`);
+    return false
+  }
+}
 
 function generateID(length = 8) {
   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -35,4 +49,5 @@ function generateID(length = 8) {
   return randomStr;
 }
 
-module.exports = { generateUserId };
+module.exports = { generateUserId,
+getUserID};

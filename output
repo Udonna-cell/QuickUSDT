@@ -1,0 +1,149 @@
+.
+├── app.js
+├── bin
+│   └── www
+├── output
+├── package.json
+├── public
+│   ├── images
+│   │   ├── ei_1754030313208-removebg-preview (3).png
+│   │   ├── ei_1754030394697-removebg-preview.png
+│   │   ├── ei_1754030407596-removebg-preview.png
+│   │   ├── ei_1754030425422-removebg-preview.png
+│   │   ├── freepik_15170901-a621-4a15-9ccb-3d62f18db07c (1).png
+│   │   ├── icons
+│   │   │   ├── ant-design--logout-outlined.svg
+│   │   │   ├── et--profile-male.svg
+│   │   │   ├── iconoir--app-notification.svg
+│   │   │   ├── mdi--invite.svg
+│   │   │   ├── mynaui--lock-diamond-solid.svg
+│   │   │   ├── mynaui--lock-diamond.svg
+│   │   │   ├── mynaui--lock-square.svg
+│   │   │   ├── noto--wrapped-gift.svg
+│   │   │   ├── noto--wrapped-gift.svg (2)
+│   │   │   ├── pattern.svg
+│   │   │   └── x.svg
+│   │   ├── icons8-wallet-50.png
+│   │   ├── img
+│   │   │   ├── bank.png
+│   │   │   ├── exchange_5844786.png
+│   │   │   ├── facuetpay-seeklogo.png
+│   │   │   ├── facuetpay.png
+│   │   │   ├── nigeria.png
+│   │   │   └── paper-plane.svg
+│   │   ├── logo
+│   │   │   ├── gift.png
+│   │   │   └── logo.png
+│   │   ├── profile
+│   │   │   ├── GSfBdQmA4NHxvyLE.png
+│   │   │   ├── GbUg885TXyE8UZOr.png
+│   │   │   ├── HpeAq5wbDYORFT3h.png
+│   │   │   ├── N91n9eqARqDHLOC5.png
+│   │   │   ├── file_000000000ba462438af03b1bca474f97.png
+│   │   │   └── file_0000000055546243ba687a23f2a75c33.png
+│   │   └── vecteezy_happy-3d-student-boy-with-books-on-white-background-png_22484651.png
+│   ├── javascripts
+│   │   ├── register.js
+│   │   ├── script.js
+│   │   └── utility.js
+│   └── stylesheets
+│       └── style.css
+├── routes
+│   ├── API
+│   │   └── notification.js
+│   ├── daily-bonus.js
+│   ├── dashboard.js
+│   ├── index.js
+│   ├── logout.js
+│   ├── payment.js
+│   ├── register.js
+│   ├── signin.js
+│   └── users.js
+├── sass
+│   ├── _balance.scss
+│   ├── _bonus.scss
+│   ├── _card.scss
+│   ├── _dashbaord.scss
+│   ├── _event-card.scss
+│   ├── _global.scss
+│   ├── _invite.scss
+│   ├── _loader.scss
+│   ├── _nav.scss
+│   ├── _notification.scss
+│   ├── _referral.scss
+│   ├── _register.scss
+│   ├── _reward-receipt.scss
+│   ├── _signup.scss
+│   ├── _tab.scss
+│   ├── _transaction.scss
+│   ├── _window.scss
+│   └── style.scss
+├── test.js
+├── utility
+│   ├── cookies
+│   │   └── bonus.js
+│   ├── database
+│   │   ├── checkExist.js
+│   │   ├── checkMatchPassword.js
+│   │   ├── index.js
+│   │   ├── init.js
+│   │   ├── insert.js
+│   │   ├── key.js
+│   │   └── query
+│   │       ├── bonus.sql
+│   │       ├── createTable.sql
+│   │       ├── events.sql
+│   │       ├── invite.sql
+│   │       └── transactions.sql
+│   ├── date.js
+│   ├── events
+│   │   └── getEvents.js
+│   ├── faucet
+│   │   └── index.js
+│   ├── generateID.js
+│   ├── getBalance.js
+│   ├── payment.js
+│   ├── referrals.js
+│   ├── scssCompile.js
+│   ├── socket.js
+│   ├── tabs.json
+│   └── transaction.js
+└── views
+    ├── assets
+    │   ├── icons8-tether-logo.svg
+    │   └── icons8-tether.svg
+    ├── components
+    │   ├── event.pug
+    │   ├── invite.pug
+    │   ├── label.pug
+    │   ├── methods
+    │   │   └── methods.pug
+    │   ├── nav
+    │   │   └── nav.pug
+    │   ├── notify
+    │   │   └── header.pug
+    │   ├── page
+    │   │   └── page.pug
+    │   ├── tag.pug
+    │   ├── transaction
+    │   │   └── log.pug
+    │   └── warning.pug
+    ├── daily-bonus.pug
+    ├── dashboard.pug
+    ├── error.pug
+    ├── includes
+    │   ├── card.pug
+    │   ├── event.pug
+    │   ├── invite.pug
+    │   ├── notification.pug
+    │   ├── referral.pug
+    │   ├── reward-receipt.pug
+    │   ├── tab.pug
+    │   ├── transaction.pug
+    │   └── window.pug
+    ├── index.pug
+    ├── layout.pug
+    ├── register.pug
+    └── signup.pug
+
+28 directories, 119 files

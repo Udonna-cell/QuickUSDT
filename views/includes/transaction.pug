@@ -1,0 +1,42 @@
+//- transactions.pug
+mixin icon(type)
+  //- simple circle placeholder icons — replace with SVGs or icon font
+  span.icon(class=type)
+
+.app
+  header.transactions-header
+    a.back(href="#") ←
+    h1 Transactions
+    a.download(href="#") Download
+
+  .filters
+    .select
+      select
+        option All Categories
+        option Mobile Data
+        option Spend & Save
+    .select
+      select
+        option All Status
+        option Successful
+        option Pending
+
+  .month-card
+    .month-row
+      h2 Jul 2025
+      button.analysis Analysis
+    .summary
+      span.in In: ₦25,464.88
+      span.out Out: ₦13,385.00
+
+  ul.tx-list
+    //- repeat each transaction item — use server loop in real app
+    each tx, i in [{title:'Bonus from Data Purchase', time:'Jul 2nd, 18:43:22', amount:'+₦10.00', status:'Successful', icon:'gift'},{title:'Mobile Data', time:'Jul 2nd, 18:43:15', amount:'-₦500.00', status:'Successful', icon:'mobile'},{title:'Spend & Save Deposit', time:'Jul 2nd, 18:42:13', amount:'₦5,000.00', status:'Successful', icon:'bag'}]
+      li.tx-item
+        +icon(tx.icon)
+        .tx-body
+          .tx-title= tx.title
+          .tx-time= tx.time
+        .tx-right
+          .tx-amount!= tx.amount
+          .tx-status= tx.status

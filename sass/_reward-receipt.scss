@@ -1,0 +1,88 @@
+section.reward-receipt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 1rem;
+  
+}
+
+.receipt-card {
+  background: #1c1f2e;
+  padding: 20px;
+  border-radius: 16px;
+  width: 320px;
+  text-align: center;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+
+  .reward-text {
+    font-size: 16px;
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .amount {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+
+    .value {
+      color: #3ef07d; // green for reward value
+    }
+    .currency {
+      color: #bdbde6;
+      margin-left: 4px;
+    }
+  }
+
+  .fiat {
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 12px;
+  }
+
+  .date-time {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 20px;
+  }
+
+  .from-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #2a2f44;
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+
+    .icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .from {
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+
+  .receipt-btn {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid #444;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #ddd;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background: #2a2f44;
+    }
+  }
+}

@@ -1,0 +1,234 @@
+@use "global" as *;
+
+/* section.referral {
+  background: $color-surface;
+  position: fixed;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+  top: 100%;
+  left: 0px;
+  transition: all 0.5s;
+  
+  & > .back {
+    margin-bottom: 1rem;
+  }
+  & > h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  & > .hanger {
+    margin: 1rem 0;
+    & > h2 {
+      text-align: center;
+      font-size: 2rem;
+    }
+    
+    & > div {
+      display: flex;
+      align-items: center;
+      background: $color-card;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 7px;
+      margin-top: 0.5rem;
+      
+      & > input {
+        width: 100%;
+        border: none;
+        background: transparent;
+      }
+    }
+    
+    & > button {
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 60%;
+      padding: 0.7rem;
+      margin: 0 auto;
+      border-radius: 7px;
+      border: none;
+      margin-top: 1rem;
+      gap: 1rem;
+    }
+  }
+} */
+
+
+
+section.referral {
+  background: #1c1f26;
+  min-height: 100vh;
+  padding: 1rem;
+  color: #fff;
+  /* position: fixed; */
+  width: 100%;
+  /* height: 100vh; */
+  /* top: 100%; */
+  /* left: 0px; */
+  /* transition: all 0.5s; */
+  /* font-family: 'Inter', sans-serif; */
+  
+    &>.header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+    overflow: scroll;
+    padding-bottom: 2rem;
+    height: 100%;
+  }
+
+  .title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    color: #aaa;
+    margin-bottom: 2rem;
+  }
+
+  .referral-box {
+    background: #2a2e38;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    
+    & > div {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.6rem;
+      background: #1c1f26;
+      border: 1px solid #444;
+      border-radius: 6px;
+      color: #fff;
+      margin-bottom: 0.8rem;
+    }
+
+    .copy-btn {
+      display: block;
+      width: 100%;
+      padding: 0.6rem;
+      background: #3b82f6;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      &:hover {
+        background: #2563eb;
+      }
+    }
+
+    .share-buttons {
+      display: flex;
+      justify-content: space-around;
+
+      .share-btn {
+        background: #333;
+        border: none;
+        border-radius: 50%;
+        padding: 0.6rem;
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: #fff;
+        transition: 0.2s ease;
+
+        &.telegram {
+          background: #0088cc;
+        }
+
+        &.whatsapp {
+          background: #25d366;
+        }
+
+        &.twitter {
+          background: #1da1f2;
+        }
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  .benefits {
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 0.5rem;
+        color: #a3e635; // green checkmark feel
+        font-size: 0.95rem;
+      }
+    }
+  }
+
+  .pool {
+    background: #2a2e38;
+    padding: 1rem;
+    border-radius: 10px;
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .member {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #444;
+
+      i {
+        margin-right: 0.5rem;
+      }
+
+      .name {
+        flex: 1;
+        margin-left: 0.5rem;
+      }
+
+      .earnings {
+        font-weight: 600;
+        color: #facc15;
+      }
+    }
+  }
+}

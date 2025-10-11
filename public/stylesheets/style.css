@@ -244,8 +244,8 @@ button.btn:active,
 
 .hugeicons--cashback::after {
   display: inline-block;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   vertical-align: -0.125em;
   content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%239ca3af' stroke-linecap='round' stroke-width='1.5'%3E%3Cpath stroke-linejoin='round' d='M2 12c0 5.523 4.477 10 10 10s10-4.477 10-10S17.523 2 12 2C7.9 2 4.375 4.468 2.832 8M2 4.5l.5 4l4-1'/%3E%3Cpath d='M14.726 10.06c-.1-.762-.973-1.995-2.545-1.995c-1.826 0-2.594 1.014-2.75 1.52c-.243.678-.195 2.071 1.946 2.223c2.675.19 3.747.507 3.61 2.147c-.136 1.64-1.627 1.995-2.806 1.957s-3.107-.58-3.182-2.04M11.994 6.5v1.57m0 7.833V17.5'/%3E%3C/g%3E%3C/svg%3E");
 }
@@ -326,13 +326,15 @@ button.btn:active,
   gap: 0.3rem;
   padding: 0.3rem 0.5rem;
   border-radius: 5px;
+  font-weight: bold;
 }
 .dashboard .balance-box > .cashback > p:last-child {
+  color: #9ca3af;
   display: flex;
   align-items: center;
   justify-content: center;
   /* flex-direction: row-reverse; */
-  gap: 1rem;
+  gap: 0.5rem;
   /* padding: 0.3rem 0.5rem; */
   /* border-radius: 5px; */
 }

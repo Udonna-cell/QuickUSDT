@@ -30,7 +30,7 @@ async function shareContent() {
   const url = getBaseURL();
 
   // Image file URL (must be from the same origin or CORS-enabled)
-  const imageUrl = "/images/vecteezy_happy-3d-student-boy-with-books-on-white-background-png_22484651.png"; // Update to your image path
+  const imageUrl = "/images/logo/logo.png"; // Update to your image path
 
   try {
     // Fetch the image and convert it into a File object

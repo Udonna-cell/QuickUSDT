@@ -113,6 +113,7 @@ async function frameToggle(option, core) {
     let content = await fetchData(core);
     console.log(content.page);
   document.querySelector(`section.${option} > .page`).innerHTML = content.page
+  document.querySelector("input#referral-link").value = getBaseURL().split("=")[0] + "=xxxxx"
   } else {
     app.style.top = '100%';
   }

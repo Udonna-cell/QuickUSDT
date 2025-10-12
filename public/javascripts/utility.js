@@ -28,8 +28,9 @@ function getBaseURL() {
 async function shareContent() {
   // alert("man of steel")
   // Content to be shared
-  const title = "Check this out!";
-  const text = "This is something interesting to share.";
+  const title = "> 💸 Join *QuickUSDT* today and earn *$0.008 instantly!*";
+  const text = `Start completing tasks, events, and more to boost your earnings.\n
+🔗 Sign up now and start earning: \n`;
   const url = getBaseURL();
 
   // Image file URL (must be from the same origin or CORS-enabled)

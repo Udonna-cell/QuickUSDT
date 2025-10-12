@@ -15,6 +15,7 @@ const dailyBonus = require("./routes/daily-bonus")
 const NOTIFICATION = require("./routes/API/notification")
 const TRANSACTION = require("./routes/API/transaction")
 const REFERRAL = require("./routes/API/referral")
+const BONUS = require("./routes/API/bonus")
 
 // creating connection to the database
 /* 
@@ -53,6 +54,7 @@ app.use('/logout', logout);
 app.use('/notify', NOTIFICATION);
 app.use('/transaction', TRANSACTION);
 app.use('/referral', REFERRAL);
+app.use('/bonus', BONUS);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

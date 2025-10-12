@@ -1,10 +1,22 @@
 nav 
-    .icon(onclick="logout()") 
-      img(src="/images/icons/ant-design--logout-outlined.svg")
-    .icon(onclick="frameToggle('window','profile')") 
-      img(src="/images/icons/et--profile-male.svg")
-    .icon(onclick="frameToggle('window','transaction')") 
-      span.solar--history-linear
-    .icon(onclick="frameToggle('window','referral')")
-      img(src="/images/icons/mdi--invite.svg")
-    
+  .card
+    p.title daily check-in
+    .info(onclick="frameToggle('window','bonus')")
+      span.material-symbols-light--check-box-outline-sharp
+      p check in
+  .card
+    p.title earn from task  
+    .info(onclick="frameToggle('window','profile')")
+      span.line-md--link
+      p shortlin
+  .card
+    p.title invite & earn
+    .info(onclick="frameToggle('window','referral')")
+      span.mdi--invite
+      p invite friends
+  .card
+    p.title mission 
+      span 2 active
+    .info(onclick="frameToggle('window','transaction')") 
+      // span.iconoir--task-list
+      p Earn 1 USDT daily

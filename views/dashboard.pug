@@ -40,26 +40,9 @@ block content
             each event in events
                 include ./components/event.pug
 
-    //- referral dashboard
-    // include ./components/invite.pug
-
-    each tab in tabs
-        // include ./includes/tab.pug
 
     include ./includes/window.pug
-    // include ./includes/referral.pug
-    // include ./includes/transaction.pug
-    // include ./signup.pug
 
-    //- This is the bonus layout
-    section.layout(class={ hide: isBonusSet })
-        - var title = "daily bonus"
-        - var detail = "claim a bonus every day"
-        - var amount = userBonus.reward + " USDT"
-        - var streak = userBonus.day + " / 7"
-        - var claimed = userBonus.day
-        - var left = 7 - userBonus.day
-        include ./daily-bonus.pug
 
 block script
-    script(src="/javascripts/utility.js")
+  script(src="/javascripts/utility.js")

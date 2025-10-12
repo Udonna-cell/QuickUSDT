@@ -1,4 +1,10 @@
-section.main-container
+section.main-container.bonus
+  - var title = "daily bonus";
+  - var detail = "claim a bonus every day";
+  - var amount = userBonus.reward + " USDT";
+  - var streak = userBonus.day + " / 7";
+  - var claimed = userBonus.day;
+  - var left = 7 - userBonus.day;
   .gift-box
     img.gift(src="/images/logo/gift.png" alt="Daily Reward Gift")
     .confetti
@@ -13,4 +19,7 @@ section.main-container
     p.info Come back tomorrow to get your bonus points. 
       | Skipping a day resets your check-in.
 
-  button.continue-btn(onclick="dailyBonus()") Continue
+  if isBonusSet
+    button.continue-btn(onclick="frameToggle('window','bonus')") Bonus claimed
+  else
+    button.continue-btn(onclick=`dailyBonus(${isBonusSet})`) Continue

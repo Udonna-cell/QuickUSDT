@@ -1,7 +1,10 @@
 
 
+
+
 function logout() {
-  window.location.href = "/logout"
+  alert(streak)
+  // window.location.href = "/logout"
 }
 
 
@@ -106,14 +109,18 @@ let isPageOpen = false
 async function frameToggle(option, core) {
   // console.log(option);
   let app = document.querySelector(`section.${option}`);
+  document.querySelector(`section.${option} > .page`).innerHTML = "";
   
   isPageOpen = !isPageOpen
   if (isPageOpen) {
     app.style.top = '0%';
     let content = await fetchData(core);
-    console.log(content.page);
-  document.querySelector(`section.${option} > .page`).innerHTML = content.page
-  document.querySelector("input#referral-link").value = getBaseURL().split("=")[0] + "=xxxxx"
+    // console.log(content.page);
+    
+  document.querySelector(`section.${option} > .page`).innerHTML = (content.page)? content.page : "No data found :(";
+  if(core == "referral"){
+    document.querySelector("input#referral-link").value = getBaseURL().split("=")[0] + "=xxxxx";
+  }
   } else {
     app.style.top = '100%';
   }
@@ -162,20 +169,16 @@ document.querySelectorAll("section.tab").forEach((element) => {
 // Define an async function to fetch data
 async function fetchData(url) {
   try {
-    // Send request
     const response = await fetch(url);
 
-    // Check if request was successful
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      throw new Error(`HTTP error! Status: ${response.status} (${response.statusText})`);
     }
 
-    // Parse the response as JSON
     const data = await response.json();
-
-    // Return the data
     return data;
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error fetching data:", error.message || error);
+    return false;
   }
 }

@@ -10,13 +10,14 @@ const layout = document.querySelector("section.layout");
 function active() {
   layout.classList.remove("hide");
 }
-function dailyBonus() {
+function dailyBonus(isBonusClsimed) {
+  alert(isBonusClsimed)
   fetch("/daily-bonus")
     .then((data) => data.json())
     .then((d) => {
       console.log(d);
       balance.innerHTML = d.balance + "$";
-      closeLayout();
+      frameToggle('window','bonus')
     });
 }
 function closeLayout() {

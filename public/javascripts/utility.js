@@ -26,56 +26,66 @@ function getBaseURL() {
 
 
 async function shareContent() {
-  // alert("man of steel")
-  // Content to be shared
-  const title = "> 💸 Join *QuickUSDT* today and earn *$0.008 instantly!*";
-  const text = `Start completing tasks, events, and more to boost your earnings.\n
-🔗 Sign up now and start earning: \n`;
-  const url = getBaseURL();
-
-  // Image file URL (must be from the same origin or CORS-enabled)
-  const imageUrl = "/images/logo/logo.png"; // Update to your image path
+  const title = "💸 Join QuickUSDT today and earn $0.008 instantly!";
+  const text = `Start completing tasks, events, and more to boost your earnings.\n\n🔗 Sign up now and start earning:`;
+  const url = getBaseURL(); // e.g., "https://quickusdt.com"
+  const imageUrl = "/images/logo/logo.png";
 
   try {
-    // Fetch the image and convert it into a File object
-    const response = await fetch(imageUrl);
-    const blob = await response.blob();
-    const file = new File([blob], "shared-image.jpg", { type: blob.type });
+    // Try to load image if possible
+    let file;
+    try {
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
+      file = new File([blob], "quickusdt-logo.jpg", { type: blob.type });
+    } catch {
+      console.warn("⚠️ Image not available or failed to load.");
+    }
 
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    // Modern Web Share API with image support
+    if (navigator.canShare && file && navigator.canShare({ files: [file] })) {
       await navigator.share({
         title,
         text,
         url,
-        files: [file]
+        files: [file],
       });
-      console.log("Shared successfully with image!");
-    } else if (navigator.share) {
-      // Fallback to sharing without file if file sharing isn't supported
+      console.log("✅ Shared successfully with image!");
+    }
+
+    // Web Share API without image
+    else if (navigator.share) {
       await navigator.share({
         title,
-        text,
-        url
+        text: `${text}\n${url}`,
       });
-      console.log("Shared successfully without image.");
-    } else {
-      // Fallback for platforms without Web Share API
-      const encodedUrl = encodeURIComponent(url);
-      const encodedText = encodeURIComponent(text);
+      console.log("✅ Shared successfully without image.");
+    }
 
-      const platforms = {
+    // Fallback for unsupported browsers
+    else {
+      const encodedUrl = encodeURIComponent(url);
+      const encodedText = encodeURIComponent(`${title}\n\n${text}\n${url}`);
+
+      const shareLinks = {
         facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-        whatsapp: `https://wa.me/?text=${encodedText}%20${encodedUrl}`,
-        twitter: `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`,
+        whatsapp: `https://wa.me/?text=${encodedText}`,
+        twitter: `https://twitter.com/intent/tweet?text=${encodedText}`,
         telegram: `https://t.me/share/url?url=${encodedUrl}&text=${encodedText}`,
       };
 
-      for (const [platform, link] of Object.entries(platforms)) {
-        window.open(link, "_blank");
+      const platform = prompt(
+        "Where would you like to share? (facebook, whatsapp, twitter, telegram)"
+      )?.toLowerCase();
+
+      if (platform && shareLinks[platform]) {
+        window.open(shareLinks[platform], "_blank");
+      } else {
+        alert("Invalid platform. Please try again.");
       }
     }
   } catch (err) {
-    console.error("Share failed:", err);
+    console.error("❌ Share failed:", err);
   }
 }
 

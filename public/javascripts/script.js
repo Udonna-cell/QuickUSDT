@@ -10,14 +10,22 @@ const layout = document.querySelector("section.layout");
 function active() {
   layout.classList.remove("hide");
 }
-function dailyBonus(isBonusClsimed) {
-  alert(isBonusClsimed)
+let isClaimingBonus = false;
+
+function dailyBonus(isBonusClaimed) {
+  if (isClaimingBonus) return; // 🛑 prevent multiple calls
+  isClaimingBonus = true;      // 🔒 lock
+
   fetch("/daily-bonus")
-    .then((data) => data.json())
+    .then((res) => res.json())
     .then((d) => {
       console.log(d);
       balance.innerHTML = d.balance + "$";
-      frameToggle('window','bonus')
+      frameToggle('window', 'bonus');
+    })
+    .catch((err) => console.error(err))
+    .finally(() => {
+      isClaimingBonus = false; // 🔓 unlock after done
     });
 }
 function closeLayout() {

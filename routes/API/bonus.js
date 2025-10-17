@@ -11,7 +11,7 @@ const compile = require('../../utility/scssCompile.js');
 const {
   isBonusClaimed,
   isUserActive,
-  setNextClaim,
+  computeNextClaim,
   getBonus,
 } = require("../../utility/cookies/bonus");
 
@@ -28,8 +28,8 @@ router.get("/", async function (req, res, next) {
     isBonusSet = await isBonusClaimed(ID);
     userBonus = await getBonus(ID);
     const isUserInactive = userBonus.length == 0;
-    userBonus = await setNextClaim(userBonus[0], isUserInactive, ID);
-    userBonus.day = userBonus.day == undefined? 1 : userBonus.day
+    userBonus = await computeNextClaim(ID);
+    // userBonus.day = userBonus.day == undefined? 1 : userBonus.day
   }catch (err) {
     console.error('Error:', err);
     console.log("Can't get user Bonus for ID", ID);
@@ -39,7 +39,8 @@ router.get("/", async function (req, res, next) {
 
   const filePath = path.join(__dirname, '../../views/daily-bonus.pug');
   const pageFn = pug.compileFile(filePath);
-  let pageHtml = pageFn({ ID, isBonusSet, userBonus }); // pass data to pug template if needed
+  console.log({ ID, isBonusSet, userBonus: userBonus });
+  let pageHtml = pageFn({ ID, isBonusSet, userBonus}); // pass data to pug template if needed
   console.log("Bonus >>>",{ ID, isBonusSet, userBonus })
   res.json({ page: pageHtml });
 })

@@ -3,26 +3,13 @@ const Database = require("../database");
 const { currentTime, compareTime } = require("../date");
 const { Transaction } = require("../transaction.js");
 
-async function setBonus({ userID, reward, count, streak, date }) {
-  const DB = new Database();
-  try {
-    const result = await DB.query(
-      "INSERT INTO `bonus`(`userID`, `reward`, `count`, `streak`, `date`) VALUES (?, ?, ?, ?, ?);",
-      [userID, reward, count, streak, date]
-    );
-    await DB.query(
-      "INSERT INTO `transactions`(`ID`, `amount`, `type`, `flag`, `date`) VALUES (?, ?, ?, ?, ?)",
-      [userID, reward, "Credit", "Bonus", date]
-    );
-    return { status: result.success, ID: userID };
-  } catch (error) {
-    // console.error("Error in setBonus:", error);
-    return { status: false, ID: userID };
-  }
-}
 
-// These logic is called to set that a logic is claim or claim if not claimed
+
+// Claims and updates the bonus	{ status, result, message }
 async function claimBonus({ ID }) {
+  if (await isBonusClaimed(ID)) {
+    return { result: null, status: false, ID };
+  }
   const DB = new Database();
 
   // this get that user ID in the bonus table
@@ -32,11 +19,7 @@ async function claimBonus({ ID }) {
   const isActive = getUserBonus.length > 0;
   // console.log(isActive, ">><<<");
 
-  const { userID, reward, count, streak, date } = await setNextClaim(
-    getUserBonus[0],
-    !isActive,
-    ID
-  );
+  const { userID, reward, count, streak, date } = await computeNextClaim( ID );
 
   // console.log("claim ID", { userID, reward, count, streak, date });
 
@@ -68,50 +51,19 @@ async function claimBonus({ ID }) {
   }
 }
 
-// this is to check if the user has claimed the current day bonus ---> boolean
-async function isBonusClaimed(userID) {
-  const DB = new Database();
-  const now = currentTime().YMD;
-
-  try {
-    let { results } = await DB.query(
-      "SELECT date FROM `bonus` WHERE `userID`=?",
-      [userID]
-    );
-    if (results.length == 0) {
-      return false;
-    }
-    results = JSON.parse(JSON.stringify(results))[0].date;
-    let T = new Date(results)
-    
-    // console.log("Have user claimed today bonus", T == now);
-    return (T.getFullYear() == now.getFullYear() && T.getMonth() == now.getMonth() && T.getDate() == now.getDate()) ? true : false;
-  } catch (error) {
-    // console.log(error);
-    return false;
-  }
-}
-
-async function isUserActive(userID) {
-  const DB = new Database();
-  try {
-    const result = await DB.query("SELECT * FROM `bonus` WHERE `userID` = ?", [
-      userID,
-    ]);
-    return JSON.parse(JSON.stringify(result.results)).length > 0;
-  } catch (error) {
-    // console.error("Error in isUserActive:", error);
-    return false;
-  }
-}
-
-async function setNextClaim(record, isUserInactive, id) {
+// Calculates what the next reward will be	Object with { userID, reward, count, streak, date }
+async function computeNextClaim(id) {
   const { Y, M, D, now } = currentTime();
-  console.log("records data", record);
-
-  // for users that has not claim bonus before
-  if (isUserInactive) {
-    // console.log("User has not claimed bonus before");
+  // get next record if user is on the table 
+  const record = (await getBonus(id))[0]
+  const { diffDays } = currentTime(record.date)
+  // if user has claimed today
+  console.log(diffDays, "days past");
+  if (diffDays == 0) {
+    return record
+  }
+    // set next claim to default if user is not on the bonus table or haven't claim over a day
+  if (!(await isUserActive) || diffDays > 1) {
     let nextClaim = {
       userID: id,
       reward: Number(process.env.AMOUNT),
@@ -121,7 +73,8 @@ async function setNextClaim(record, isUserInactive, id) {
     };
     return nextClaim;
   }
-  // console.log("User has claimed bonus before");
+  
+  // console.log("stabug6 >>>", record.date);
   let nextClaim = {
     userID: record.userID,
     reward: Number(process.env.AMOUNT),
@@ -130,30 +83,73 @@ async function setNextClaim(record, isUserInactive, id) {
     date: now,
   };
   // checking if the claim record is frequent
-
   let onTrack = compareTime(record.date, nextClaim.date).onTrack;
-
-  // console.log("On track",onTrack);
-
   if (onTrack) {
     nextClaim.count += 1;
     if (nextClaim.count > nextClaim.streak) {
       nextClaim.streak = nextClaim.count;
     }
   } else {
-    nextClaim.count = 1;
+    // nextClaim.count = 1;
+    return record
   }
 
   const multiplier = nextClaim.count % 7 === 0 ? 7 : nextClaim.count % 7;
   nextClaim.reward = nextClaim.reward * multiplier;
   nextClaim.day = multiplier;
-  // nextClaim.count = multiplier
+  nextClaim.count = multiplier;
   nextClaim.date = now;
 
   return nextClaim;
 }
 
-// These logic gets the bonus from the bonus table of a particular user ID
+// Creates a new bonus record for new users	{ status, ID }
+async function setBonus({ userID, reward, count, streak, date }) {
+  const DB = new Database();
+  try {
+    const result = await DB.query(
+      "INSERT INTO `bonus`(`userID`, `reward`, `count`, `streak`, `date`) VALUES (?, ?, ?, ?, ?);",
+      [userID, reward, count, streak, date]
+    );
+    await DB.query(
+      "INSERT INTO `transactions`(`ID`, `amount`, `type`, `flag`, `date`) VALUES (?, ?, ?, ?, ?)",
+      [userID, reward, "Credit", "Bonus", date]
+    );
+    return { status: result.success, ID: userID };
+  } catch (error) {
+    return { status: false, ID: userID };
+  }
+}
+
+// Checks if the user already claimed today	true / false
+async function isBonusClaimed(userID) {
+  try {
+    let results = await getBonus(userID);
+    if (results.length == 0) {
+      return false;
+    }
+    results = results[0].date;
+    console.log(results);
+    let T = new Date(results)
+    const timeRemain = currentTime(T).diffDays;
+    // console.log(timeRemain, "time remaining");
+    return (diffDays <= 0)
+  } catch (error) {
+    return false;
+  }
+}
+
+// Checks if the user exists in the bonus table	true / false
+async function isUserActive(userID) {
+  try {
+    const result = await getBonus(userID);
+    return result.length > 0;
+  } catch (error) {
+    return false;
+  }
+}
+
+// Fetches the user’s bonus record	Array of bonus records
 async function getBonus(ID) {
   const DB = new Database();
   try {
@@ -163,9 +159,6 @@ async function getBonus(ID) {
     );
     return JSON.parse(JSON.stringify(results));
   } catch (error) {
-    // console.log("=================NO BONUS AVAILABLE ======================");
-    // console.log(error);
-    // console.log("=======================================");
     return [];
   }
 }
@@ -176,5 +169,5 @@ module.exports = {
   isUserActive,
   claimBonus,
   getBonus,
-  setNextClaim,
+  computeNextClaim,
 };

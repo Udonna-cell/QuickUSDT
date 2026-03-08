@@ -1,11 +1,4 @@
-# app.js
-# bin/
 node_modules/
-# package.json
-package-lock.json
-# public/
-# routes/
-# sass/
-# utility/
-# views/
+public/stylesheets/
 .env
+test.js

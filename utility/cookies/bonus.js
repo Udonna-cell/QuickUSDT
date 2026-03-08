@@ -7,6 +7,7 @@ const { Transaction } = require("../transaction.js");
 
 // Claims and updates the bonus	{ status, result, message }
 async function claimBonus({ ID }) {
+
   if (await isBonusClaimed(ID)) {
     return { result: null, status: false, ID };
   }
@@ -56,7 +57,8 @@ async function computeNextClaim(id) {
   const { Y, M, D, now } = currentTime();
   // get next record if user is on the table 
   const record = (await getBonus(id))[0]
-  const { diffDays } = currentTime(record.date)
+  const { diffDays } = currentTime(record? record.date : `${D}:${M-1}:${Y}`)
+
   // if user has claimed today
   console.log(diffDays, "days past");
   if (diffDays == 0) {

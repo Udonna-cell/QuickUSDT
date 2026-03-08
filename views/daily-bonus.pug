@@ -1,10 +1,10 @@
 section.main-container.bonus
   - var title = "daily bonus";
   - var detail = "claim a bonus every day";
-  - var amount = userBonus.reward + " USDT";
-  - var streak = userBonus.day + " / 7";
-  - var claimed = userBonus.count;
-  - var left = 7 - userBonus.count;
+  - var amount = (userBonus.reward? userBonus.reward : 0.008) + " USDT";
+  - var streak = (userBonus.day? userBonus.day : 1) + " / 7";
+  - var claimed = (userBonus.count? userBonus.count : 1);
+  - var left = 7 - (userBonus.count? userBonus.count : 1);
   .gift-box
     img.gift(src="/images/logo/gift.png" alt="Daily Reward Gift")
     .confetti

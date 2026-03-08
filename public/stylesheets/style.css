@@ -1094,7 +1094,7 @@ body {
 .tx-item .tx-right .tx-amount::before {
   content: "";
 }
-.tx-item .tx-right .tx-amount:contains("+") {
+.tx-item .tx-right .tx-amount:contains('+') {
   color: #15c07a;
 }
 .tx-item .tx-right .tx-status {

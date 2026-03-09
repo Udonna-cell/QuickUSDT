@@ -1,4 +1,4 @@
 node_modules/
-public/stylesheets/
+public/stylesheets/style.css
 .env
 test.js

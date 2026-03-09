@@ -193,3 +193,22 @@ async function fetchData(url) {
     return false;
   }
 }
+
+
+
+//window scroll effect to hide the window nav 
+const window_page = document.querySelector("section.window > .page");
+const window_header = document.querySelector("section.window > .header")
+
+let scroll_monitor = 0
+window_page.addEventListener("scroll",(e)=>{
+  if (window_page.scrollTop > 20) {
+    window_header.style.top = "-10%"
+    //scroll_monitor = window_page.scrollTop
+  }
+  if (window_page.scrollTop < scroll_monitor) {
+    window_header.style.top ="1rem"
+    //scroll_monitor = window_page.scrollTop
+  }
+  scroll_monitor = window_page.scrollTop
+});

@@ -1542,12 +1542,15 @@ section.window > .page {
   overflow: scroll;
   height: 100%;
 }
+section.window > .page > section {
+  padding-top: 5rem !important;
+}
 
 section.main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.5rem;
+  padding: 5rem 1.5rem 1.5rem 1.5rem;
   padding-bottom: 5rem;
   min-height: 100vh;
   background: radial-gradient(circle at top, rgba(26, 42, 108, 0), rgba(26, 42, 108, 0.1), rgba(26, 42, 108, 0.1), #1a2a6c, #000);

@@ -36,5 +36,9 @@ section.window {
   & > .page {
     overflow: scroll;
     height: 100%;
+
+    & > section {
+      padding-top: 5rem !important;
+    }
   }
 }

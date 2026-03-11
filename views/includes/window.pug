@@ -1,6 +1,9 @@
 section.window
-  .header(onclick="frameToggle('window')") 
-    span.ic--baseline-arrow-back(onclick="frameToggle('window')")
-    h3 activity
+  .header 
+    div
+      span.ic--baseline-arrow-back(onclick="frameToggle('window')")
+      h3 activity
+    .reload(onclick="refreshFrame()")
+      p R
   .page
     include ../components/page/page.pug

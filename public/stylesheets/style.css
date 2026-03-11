@@ -1524,19 +1524,35 @@ section.window {
   transition: all 0.2s;
 }
 section.window > .header {
-  padding: 1rem 0;
   display: flex;
+  padding: 0 1rem;
+  justify-content: space-between;
   align-items: center;
   gap: 1rem;
   position: absolute;
   top: 1rem;
-  left: 0.5rem;
-  background-color: black;
   font-size: 0.7rem !important;
   font-weight: bold;
   border-radius: 60px;
-  padding: 0.5rem 1rem;
   transition: all 0.8s;
+  width: 100%;
+}
+section.window > .header > div:nth-child(1) {
+  background-color: black;
+  border-radius: 60px;
+  display: flex;
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+  align-items: center;
+}
+section.window > .header > .reload {
+  background: black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
 }
 section.window > .page {
   overflow: scroll;

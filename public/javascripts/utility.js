@@ -121,7 +121,7 @@ async function frameToggle(option, core) {
   // console.log(option);
   let app = document.querySelector(`section.${option}`);
   document.querySelector(`section.${option} > .page`).innerHTML = "";
-  
+ alert(core) 
   isPageOpen = !isPageOpen
   if (isPageOpen) {
     app.style.top = '0%';
@@ -136,7 +136,13 @@ async function frameToggle(option, core) {
     app.style.top = '100%';
   }
 }
-
+async function refreshFrame() {
+  let PAGE = document.querySelector(`section.window > .page`)
+  let core = document.querySelector(`section.window > .page > section`).classList.value.split(" ")[0].trim()
+  let content = await fetchData(core);
+  PAGE.innerHTML = "";
+  PAGE.innerHTML = (content.page)? content.page : "No data found       :(";
+}
 function withdraw() {
   document.body.style.overflow = "hidden"
   const tab = document.querySelector("section.tab.withdraw-tab").style.bottom = "1rem";

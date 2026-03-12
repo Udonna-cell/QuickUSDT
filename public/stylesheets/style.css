@@ -741,62 +741,6 @@ section.tab > .content > section.methods > .label-mark.coming-soon > p {
   color: #000000 !important;
 }
 
-/* section.referral {
-  background: $color-surface;
-  position: fixed;
-  padding: 1rem;
-  width: 100%;
-  height: 100%;
-  top: 100%;
-  left: 0px;
-  transition: all 0.5s;
-
-  & > .back {
-    margin-bottom: 1rem;
-  }
-  & > h1 {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 0.5rem;
-  }
-  & > .hanger {
-    margin: 1rem 0;
-    & > h2 {
-      text-align: center;
-      font-size: 2rem;
-    }
-
-    & > div {
-      display: flex;
-      align-items: center;
-      background: $color-card;
-      gap: 1rem;
-      padding: 1rem;
-      border-radius: 7px;
-      margin-top: 0.5rem;
-
-      & > input {
-        width: 100%;
-        border: none;
-        background: transparent;
-      }
-    }
-
-    & > button {
-      font-weight: bold;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 60%;
-      padding: 0.7rem;
-      margin: 0 auto;
-      border-radius: 7px;
-      border: none;
-      margin-top: 1rem;
-      gap: 1rem;
-    }
-  }
-} */
 section.referral {
   background: #1c1f26;
   min-height: 100vh;
@@ -804,23 +748,40 @@ section.referral {
   color: #fff;
   /* position: fixed; */
   width: 100%;
-  /* height: 100vh; */
-  /* top: 100%; */
-  /* left: 0px; */
-  /* transition: all 0.5s; */
-  /* font-family: 'Inter', sans-serif; */
 }
-section.referral > .header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-section.referral .container {
+section.referral > .container {
   max-width: 500px;
   margin: 0 auto;
   overflow: scroll;
   padding-bottom: 2rem;
   height: 100%;
+}
+section.referral > .container > .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 10px;
+}
+section.referral > .container > .header > div:nth-child(1) {
+  border-right: 1px solid rgba(255, 255, 255, 0.4);
+  flex-grow: 1;
+  justify-items: flex-start;
+}
+section.referral > .container > .header > div:nth-child(1) > p.amount {
+  font-weight: bolder;
+  font-size: 2.5rem;
+}
+section.referral > .container > .header > div:nth-child(2) {
+  flex-grow: 1;
+  justify-items: flex-end;
+}
+section.referral > .container > .header > div:nth-child(2) > p.invite {
+  padding: 0.5rem 1rem !important;
+  background-color: rgba(25, 255, 255, 0.4);
+  color: white;
+  font-weight: bolder;
+  margin-top: 0.5rem;
 }
 section.referral .title {
   font-size: 1.8rem;
@@ -1834,10 +1795,11 @@ body {
 
 .warning {
   border: 1px solid rgb(247, 101, 2);
+  padding: 1rem;
   border-radius: 10px;
   overflow: hidden;
   width: 300px;
-  margin: auto;
+  margin: 1rem auto;
 }
 .warning > .heading {
   border-bottom: 1px solid rgb(247, 101, 2);
@@ -1930,13 +1892,6 @@ button.btn.btn-primary {
 }
 button.btn.btn-primary:active {
   transform: scale(0.96);
-}
-
-p.label {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  bottom: 0;
-  left: 50%;
 }
 
 .load {

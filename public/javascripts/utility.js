@@ -120,8 +120,7 @@ let isPageOpen = false
 async function frameToggle(option, core) {
   // console.log(option);
   let app = document.querySelector(`section.${option}`);
-  document.querySelector(`section.${option} > .page`).innerHTML = "";
- alert(core) 
+  document.querySelector(`section.${option} > .page`).innerHTML = ""; 
   isPageOpen = !isPageOpen
   if (isPageOpen) {
     app.style.top = '0%';

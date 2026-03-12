@@ -135,7 +135,7 @@ async function isBonusClaimed(userID) {
     let T = new Date(results)
     const timeRemain = currentTime(T).diffDays;
     // console.log(timeRemain, "time remaining");
-    return (diffDays <= 0)
+    return (timeRemain <= 0)
   } catch (error) {
     return false;
   }

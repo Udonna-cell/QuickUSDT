@@ -1,62 +1,5 @@
 @use "global" as *;
 
-/* section.referral {
-  background: $color-surface;
-  position: fixed;
-  padding: 1rem;
-  width: 100%;
-  height: 100%;
-  top: 100%;
-  left: 0px;
-  transition: all 0.5s;
-  
-  & > .back {
-    margin-bottom: 1rem;
-  }
-  & > h1 {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 0.5rem;
-  }
-  & > .hanger {
-    margin: 1rem 0;
-    & > h2 {
-      text-align: center;
-      font-size: 2rem;
-    }
-    
-    & > div {
-      display: flex;
-      align-items: center;
-      background: $color-card;
-      gap: 1rem;
-      padding: 1rem;
-      border-radius: 7px;
-      margin-top: 0.5rem;
-      
-      & > input {
-        width: 100%;
-        border: none;
-        background: transparent;
-      }
-    }
-    
-    & > button {
-      font-weight: bold;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 60%;
-      padding: 0.7rem;
-      margin: 0 auto;
-      border-radius: 7px;
-      border: none;
-      margin-top: 1rem;
-      gap: 1rem;
-    }
-  }
-} */
-
 
 
 section.referral {
@@ -65,25 +8,43 @@ section.referral {
   padding: 1rem;
   color: #fff;
   /* position: fixed; */
-  width: 100%;
-  /* height: 100vh; */
-  /* top: 100%; */
-  /* left: 0px; */
-  /* transition: all 0.5s; */
-  /* font-family: 'Inter', sans-serif; */
-  
-    &>.header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
+  width: 100%; 
 
-  .container {
+  & > .container {
     max-width: 500px;
     margin: 0 auto;
     overflow: scroll;
     padding-bottom: 2rem;
     height: 100%;
+     & > .header {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       padding: 1rem;
+       border-radius: 10px;
+       & > div:nth-child(1) {
+         border-right: 1px solid rgba(255, 255, 255, 0.4);
+         flex-grow: 1;
+         justify-items: flex-start;
+
+         & > p.amount {
+           font-weight: bolder;
+           font-size: 2.5rem;
+         }
+       }
+       & > div:nth-child(2) {
+         flex-grow: 1;
+         justify-items: flex-end;
+         & > p.invite {
+           padding: 0.5rem 1rem !important;
+           background-color: rgba(25, 255, 255, 0.4);
+           color: white;
+           font-weight: bolder;
+           margin-top: 0.5rem;
+
+         }
+       }
+     }
   }
 
   .title {

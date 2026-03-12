@@ -19,10 +19,9 @@ section.bonus.main-container
   .reward-text
     p Your daily reward:
     h2= amount
-    p.info Come back tomorrow to get your bonus points. 
-      | Skipping a day resets your check-in.
 
-  if isBonusSet
-    button.continue-btn(onclick="frameToggle('window','bonus')") Bonus claimed
-  else
-    button.continue-btn(onclick=`dailyBonus(${isBonusSet})`) Continue
+  if !isBonusSet
+    button.continue-btn(onclick=`dailyBonus(${isBonusSet})`) Claim Now!
+  else 
+    .warning 
+      p.info Come back tomorrow to get your bonus points. Skipping a day resets your check-in.

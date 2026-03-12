@@ -6,6 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const { referrals } = require("../../utility/referrals.js");
 const Database = require("../../utility/database");
+const { Balance } = require("../../utility/transaction.js");
 
 const compile = require('../../utility/scssCompile.js');
 
@@ -15,6 +16,7 @@ router.get("/", async function (req, res, next) {
   compile();
   const DB = new Database()
   let user;
+  const balance = await Balance(req.cookies.ID)
 
   let ID = req.cookies.ID;
   try {
@@ -30,7 +32,7 @@ router.get("/", async function (req, res, next) {
 
   const filePath = path.join(__dirname, '../../views/includes/referral.pug');
   const pageFn = pug.compileFile(filePath);
-  let pageHtml = pageFn({ ID, invite }); // pass data to pug template if needed
+  let pageHtml = pageFn({ ID, invite, balance }); // pass data to pug template if needed
   console.log({ invite });
   res.json({ page: pageHtml });
 })

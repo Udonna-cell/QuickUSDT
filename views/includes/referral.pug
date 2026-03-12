@@ -1,6 +1,13 @@
 section.referral
   - var appName = "QuickUSDT"
   .container
+    .header 
+      div 
+        p.label balance
+        p.amount $#{balance}
+      div 
+        p.label invites
+        p.invite #{invite.length}
     h1.title Invite & Earn Rewards
     p.subtitle Grow your #{appName} network and earn extra tokens every time your friends join and play.
 

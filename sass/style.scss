@@ -97,10 +97,11 @@ body {
 
 .warning {
   border: 1px solid rgba(247, 101, 2, 1);
+  padding: 1rem;
   border-radius: 10px;
   overflow: hidden;
   width: 300px;
-  margin: auto;
+  margin: 1rem auto;
   & > .heading {
     border-bottom: 1px solid rgba(247, 101, 2, 1);
     display: flex;
@@ -201,12 +202,6 @@ button.btn.btn-primary {
   }
 }
 
-p.label {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  bottom: 0;
-  left: 50%;
-}
 
 .load {
   margin: 5px auto;

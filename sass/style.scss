@@ -1,19 +1,20 @@
 @use "register";
 @use "global" as *;
 @use "dashbaord";
-@use "balance";
+/* @use "balance"; */
 @use "nav";
-@use "event-card";
-@use "tab";
-@use "referral";
-@use "transaction";
-@use "reward-receipt";
+/* @use "event-card"; */
+/* @use "tab"; */
+/* @use "referral"; */
+/* @use "transaction"; */
+/* @use "reward-receipt"; */
 @use "signup";
-@use "notification";
-@use "window";
-@use "bonus";
-@use "loader";
-@use "card";
+/* @use "notification"; */
+/* @use "window"; */
+/* @use "bonus"; */
+/* @use "loader";*/
+/* @use "card"; */
+@use "input";
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
@@ -24,7 +25,7 @@
 }
 
 p {
-  color: $color-text;
+  color: $theme-text;
 }
 
 
@@ -70,17 +71,11 @@ p {
 
 
 body {
-  background-color: $color-background;
+  background-color: $theme-bg;
+  color: $theme-text;
   height: 100vh;
   font-family: "Open Sans", sans-serif;
-  // display: flex;
-  // align-items: stretch;
-  // flex-direction: column;
-  /* padding: 1rem; */
-  // padding-top: 5rem;
-  /* padding-bottom: 6rem; */
   position: relative;
-  color: $color-text;
 }
 
 .tag {
@@ -150,7 +145,7 @@ body {
 h2 {
   text-transform: uppercase;
   margin-top: 0.5rem;
-  color: $color-heading;
+  color: $theme-text;
 }
 
 .claim {
@@ -169,7 +164,7 @@ h2 {
     max-width: 395px;
     height: 56px;
     border-radius: 1rem;
-    border: 1px solid $color-border;
+    border: 1px solid gray;
 
     & > input {
       outline: none;

@@ -1,0 +1,12 @@
+.Input 
+  label(for=field.ID) #{field.placeholder}
+  input(id=field.ID type=field.type name=field.ID)
+  .checker
+    if field.checker == "password"
+      span.mdi--show-outline.eye(onclick="hideShow()")
+    if field.checker == "require"
+
+  .hint
+    p.inactive #{field.hint}
+  .strength
+    

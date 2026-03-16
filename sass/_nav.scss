@@ -32,7 +32,7 @@
 }
 
 nav {
-  /* background-color: $color-card; */
+  /* background-color: gray; */
   border-radius: 5px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -43,7 +43,7 @@ nav {
   text-transform: capitalize;
   
   &>.card {
-    background: $color-card;
+    background: gray;
     padding: 0.6rem;
     border-radius: 5px;
     
@@ -56,7 +56,7 @@ nav {
       & > span {
         font-size: smaller;
         font-weight: lighter;
-        color: $color-muted;
+        color: gray;
       }
     }
     &>.info {
@@ -68,7 +68,7 @@ nav {
       padding: 0.5rem;
       gap: 0.5rem;
       transition: transform 0.45s;
-      background: $color-border;
+      background: gray;
       
       & > p {
         font-size: smaller;

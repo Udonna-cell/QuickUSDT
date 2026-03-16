@@ -1,14 +1,15 @@
+@use "global" as *;
 section.signup {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f8f9fb;
+  background: $theme-bg;
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
 }
 
 .register-card {
-  background: #fff;
+  @include card-style;
   padding: 24px;
   border-radius: 16px;
   width: 340px;
@@ -30,12 +31,12 @@ section.signup {
       font-size: 22px;
       font-weight: 700;
       margin: 0;
-      color: #222;
+      color: $theme-text;
     }
 
     .subtitle {
       font-size: 14px;
-      color: #777;
+      color: $theme-text-muted;
       margin: 4px 0 0;
     }
   }
@@ -89,19 +90,10 @@ section.signup {
     }
 
     .submit-btn {
-      padding: 14px;
-      background: #a8e063; // light green
-      border: none;
-      border-radius: 10px;
+      @include primary-button;
       font-size: 16px;
-      font-weight: 600;
       cursor: pointer;
-      color: #111;
       transition: background 0.3s;
-
-      &:hover {
-        background: #91d250;
-      }
     }
   }
 
@@ -109,10 +101,10 @@ section.signup {
     text-align: center;
     font-size: 13px;
     margin-top: 18px;
-    color: #666;
+    color: $theme-text-muted;
 
     a {
-      color: #91d250;
+      color: $color-vibrant-teal;
       font-weight: 500;
       margin-left: 4px;
       text-decoration: none;
